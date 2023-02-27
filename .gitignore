@@ -1,0 +1,5 @@
+build/
+.cache/
+codegen/*.fbp
+compile_commands.json
+*.plist
