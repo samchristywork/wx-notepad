@@ -75,13 +75,34 @@ public:
 
     wxTextFile tfile;
     tfile.Open(openFileDialog.GetPath());
+    wxTextFileType fileType = tfile.GuessType();
 
     wxString text = tfile.GetFirstLine();
     this->m_textCtrl->SetValue(text);
 
     while (!tfile.Eof()) {
       text = tfile.GetNextLine();
-      this->m_textCtrl->AppendText("\n");
+      switch (fileType) {
+      case wxTextFileType_Unix: {
+        this->m_textCtrl->AppendText("\n");
+        break;
+      }
+      case wxTextFileType_Dos: {
+        this->m_textCtrl->AppendText("\r\n");
+        break;
+      }
+      case wxTextFileType_Mac: {
+        this->m_textCtrl->AppendText("\r");
+        break;
+      }
+      case wxTextFileType_Os2: {
+        this->m_textCtrl->AppendText("\r\n");
+        break;
+      }
+      default: {
+        break;
+      }
+      }
       this->m_textCtrl->AppendText(text);
     }
   }
