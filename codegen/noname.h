@@ -33,6 +33,10 @@ class MainFrame : public wxFrame
 		wxStatusBar* m_statusBar;
 		wxTextCtrl* m_textCtrl;
 
+		// Virtual event handlers, override them in your derived class
+		virtual void TextCallback( wxCommandEvent& event ) { event.Skip(); }
+
+
 	public:
 
 		MainFrame( wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = wxEmptyString, const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( 500,300 ), long style = wxDEFAULT_FRAME_STYLE|wxTAB_TRAVERSAL );
