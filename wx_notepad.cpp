@@ -59,7 +59,11 @@ public:
     Bind(wxEVT_MENU, &Frame::SaveAs, this, ID_Save_As);
     Bind(wxEVT_MENU, &Frame::Exit, this, ID_Exit);
 
-  void New(wxCommandEvent &event) {}
+    int widths[] = {-1, 100, 100, 100, 100};
+    this->m_statusBar->SetFieldsCount(5, widths);
+  }
+
+  void New(wxCommandEvent &event) { this->m_textCtrl->SetValue(""); }
 
   void NewWindow(wxCommandEvent &event) {}
 
@@ -72,6 +76,10 @@ public:
 
   void Exit(wxCommandEvent &event) { this->Destroy(); }
 
+  void TextCallback(wxCommandEvent &event) {
+    std::string str = "";
+    str += std::to_string(strlen(this->m_textCtrl->GetValue()));
+    this->m_statusBar->SetStatusText(str, 1);
   }
 };
 
