@@ -52,8 +52,23 @@ public:
 
     this->SetMenuBar(menuBar);
 
+    Bind(wxEVT_MENU, &Frame::New, this, ID_New);
+    Bind(wxEVT_MENU, &Frame::NewWindow, this, ID_New_Window);
+    Bind(wxEVT_MENU, &Frame::Open, this, ID_Open);
+    Bind(wxEVT_MENU, &Frame::Save, this, ID_Save);
+    Bind(wxEVT_MENU, &Frame::SaveAs, this, ID_Save_As);
     Bind(wxEVT_MENU, &Frame::Exit, this, ID_Exit);
+
+  void New(wxCommandEvent &event) {}
+
+  void NewWindow(wxCommandEvent &event) {}
+
+  void Open(wxCommandEvent &event) {
   }
+
+  void Save(wxCommandEvent &event) {}
+
+  void SaveAs(wxCommandEvent &event) {}
 
   void Exit(wxCommandEvent &event) { this->Destroy(); }
 
