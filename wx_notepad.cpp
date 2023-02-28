@@ -68,6 +68,22 @@ public:
   void NewWindow(wxCommandEvent &event) { new Frame(NULL); }
 
   void Open(wxCommandEvent &event) {
+    wxFileDialog openFileDialog(
+        this, _("Open file"), "", "",
+        "All files|*|Text files (*.txt;*.tx)|*.txt;*.tx",
+        wxFD_OPEN | wxFD_FILE_MUST_EXIST);
+
+    wxTextFile tfile;
+    tfile.Open(openFileDialog.GetPath());
+
+    wxString text = tfile.GetFirstLine();
+    this->m_textCtrl->SetValue(text);
+
+    while (!tfile.Eof()) {
+      text = tfile.GetNextLine();
+      this->m_textCtrl->AppendText("\n");
+      this->m_textCtrl->AppendText(text);
+    }
   }
 
   void Save(wxCommandEvent &event) {}
