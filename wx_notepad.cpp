@@ -65,7 +65,7 @@ public:
 
   void New(wxCommandEvent &event) { this->m_textCtrl->SetValue(""); }
 
-  void NewWindow(wxCommandEvent &event) {}
+  void NewWindow(wxCommandEvent &event) { new Frame(NULL); }
 
   void Open(wxCommandEvent &event) {
   }
