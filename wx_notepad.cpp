@@ -4,6 +4,20 @@
 #include <wx/wx.h>
 #endif
 
+#include "codegen/noname.h"
+#include <string>
+#include <wx/filedlg.h>
+#include <wx/menu.h>
+#include <wx/textfile.h>
+
+enum {
+  ID_Exit,
+  ID_New,
+  ID_New_Window,
+  ID_Open,
+  ID_Save,
+  ID_Save_As,
+};
 
 class App : public wxApp {
 public:
@@ -25,6 +39,12 @@ public:
 
     wxMenu *menuFile = new wxMenu();
 
+    add_menu_item(menuFile, wxString(wxT("New")), ID_New);
+    add_menu_item(menuFile, wxString(wxT("New Window")), ID_New_Window);
+    add_menu_item(menuFile, wxString(wxT("Open...\tCtrl-O")), ID_Open);
+    add_menu_item(menuFile, wxString(wxT("Save")), ID_Save);
+    add_menu_item(menuFile, wxString(wxT("Save As...")), ID_Save_As);
+    menuFile->AppendSeparator();
     add_menu_item(menuFile, wxString(wxT("Exit")), ID_Exit);
 
     menuBar->Append(menuFile, wxT("File"));
