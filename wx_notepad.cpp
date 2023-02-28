@@ -121,7 +121,17 @@ public:
 };
 
 bool App::OnInit() {
-  new Frame(NULL);
+  if (wxApp::argc==1) {
+    new Frame(NULL);
+    return true;
+  }
+
+  for (int i = 1; i < wxApp::argc; i++) {
+    puts(wxApp::argv[i]);
+    Frame *f = new Frame(NULL);
+    f->LoadFile(wxApp::argv[i]);
+  }
+
   return true;
 }
 
