@@ -43,7 +43,7 @@ public:
     add_menu_item(menuFile, wxString(wxT("New")), ID_New);
     add_menu_item(menuFile, wxString(wxT("New Window")), ID_New_Window);
     add_menu_item(menuFile, wxString(wxT("Open...\tCtrl-O")), ID_Open);
-    add_menu_item(menuFile, wxString(wxT("Save")), ID_Save);
+    add_menu_item(menuFile, wxString(wxT("Save\tCtrl-S")), ID_Save);
     add_menu_item(menuFile, wxString(wxT("Save As...")), ID_Save_As);
     menuFile->AppendSeparator();
     add_menu_item(menuFile, wxString(wxT("Exit")), ID_Exit);
@@ -73,8 +73,13 @@ public:
         "All files|*|Text files (*.txt;*.tx)|*.txt;*.tx",
         wxFD_OPEN | wxFD_FILE_MUST_EXIST);
 
+    if (openFileDialog.ShowModal() == wxID_CANCEL) {
+      return;
+    }
+
+    this->LoadFile(openFileDialog.GetPath());
     wxTextFile tfile;
-    tfile.Open(openFileDialog.GetPath());
+    tfile.Open(filename);
     wxTextFileType fileType = tfile.GuessType();
 
     wxString text = tfile.GetFirstLine();
