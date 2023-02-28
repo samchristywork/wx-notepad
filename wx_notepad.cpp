@@ -78,6 +78,15 @@ public:
     }
 
     this->LoadFile(openFileDialog.GetPath());
+  }
+
+  void Save(wxCommandEvent &event) {}
+
+  void SaveAs(wxCommandEvent &event) {}
+
+  void Exit(wxCommandEvent &event) { this->Destroy(); }
+
+  void LoadFile(wxString filename) {
     wxTextFile tfile;
     tfile.Open(filename);
     wxTextFileType fileType = tfile.GuessType();
@@ -111,12 +120,6 @@ public:
       this->m_textCtrl->AppendText(text);
     }
   }
-
-  void Save(wxCommandEvent &event) {}
-
-  void SaveAs(wxCommandEvent &event) {}
-
-  void Exit(wxCommandEvent &event) { this->Destroy(); }
 
   void TextCallback(wxCommandEvent &event) {
     std::string str = "";
