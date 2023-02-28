@@ -18,7 +18,7 @@ MainFrame::MainFrame( wxWindow* parent, wxWindowID id, const wxString& title, co
 	bSizer = new wxBoxSizer( wxVERTICAL );
 
 	m_textCtrl = new wxTextCtrl( this, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxTE_MULTILINE );
-	bSizer->Add( m_textCtrl, 1, wxALL|wxEXPAND, 5 );
+	bSizer->Add( m_textCtrl, 1, wxEXPAND, 5 );
 
 
 	this->SetSizer( bSizer );

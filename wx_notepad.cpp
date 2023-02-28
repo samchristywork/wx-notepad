@@ -34,6 +34,7 @@ void add_menu_item(wxMenu *menu, wxString text, int id) {
 class Frame : public MainFrame {
 public:
   Frame(wxWindow *parent) : MainFrame(parent) {
+    this->Show(true);
 
     wxMenuBar *menuBar = new wxMenuBar(0);
 
@@ -60,8 +61,7 @@ public:
 };
 
 bool App::OnInit() {
-  Frame *frame = new Frame(NULL);
-  frame->Show(true);
+  new Frame(NULL);
   return true;
 }
 
