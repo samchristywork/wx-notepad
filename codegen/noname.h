@@ -34,7 +34,11 @@ class MainFrame : public wxFrame
 		wxTextCtrl* m_textCtrl;
 
 		// Virtual event handlers, override them in your derived class
+		virtual void KeyDownCallback( wxKeyEvent& event ) { event.Skip(); }
+		virtual void KeyUpCallback( wxKeyEvent& event ) { event.Skip(); }
+		virtual void PaintCallback( wxPaintEvent& event ) { event.Skip(); }
 		virtual void TextCallback( wxCommandEvent& event ) { event.Skip(); }
+		virtual void UpdateUICallback( wxUpdateUIEvent& event ) { event.Skip(); }
 
 
 	public:

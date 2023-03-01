@@ -27,12 +27,20 @@ MainFrame::MainFrame( wxWindow* parent, wxWindowID id, const wxString& title, co
 	this->Centre( wxBOTH );
 
 	// Connect Events
+	m_textCtrl->Connect( wxEVT_KEY_DOWN, wxKeyEventHandler( MainFrame::KeyDownCallback ), NULL, this );
+	m_textCtrl->Connect( wxEVT_KEY_UP, wxKeyEventHandler( MainFrame::KeyUpCallback ), NULL, this );
+	m_textCtrl->Connect( wxEVT_PAINT, wxPaintEventHandler( MainFrame::PaintCallback ), NULL, this );
 	m_textCtrl->Connect( wxEVT_COMMAND_TEXT_UPDATED, wxCommandEventHandler( MainFrame::TextCallback ), NULL, this );
+	m_textCtrl->Connect( wxEVT_UPDATE_UI, wxUpdateUIEventHandler( MainFrame::UpdateUICallback ), NULL, this );
 }
 
 MainFrame::~MainFrame()
 {
 	// Disconnect Events
+	m_textCtrl->Disconnect( wxEVT_KEY_DOWN, wxKeyEventHandler( MainFrame::KeyDownCallback ), NULL, this );
+	m_textCtrl->Disconnect( wxEVT_KEY_UP, wxKeyEventHandler( MainFrame::KeyUpCallback ), NULL, this );
+	m_textCtrl->Disconnect( wxEVT_PAINT, wxPaintEventHandler( MainFrame::PaintCallback ), NULL, this );
 	m_textCtrl->Disconnect( wxEVT_COMMAND_TEXT_UPDATED, wxCommandEventHandler( MainFrame::TextCallback ), NULL, this );
+	m_textCtrl->Disconnect( wxEVT_UPDATE_UI, wxUpdateUIEventHandler( MainFrame::UpdateUICallback ), NULL, this );
 
 }
