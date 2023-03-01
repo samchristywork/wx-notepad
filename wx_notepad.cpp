@@ -61,6 +61,8 @@ public:
 
     int widths[] = {-1, 100, 100, 100, 100};
     this->m_statusBar->SetFieldsCount(5, widths);
+
+    this->RedrawStatusBar();
   }
 
   void New(wxCommandEvent &event) { this->m_textCtrl->SetValue(""); }
@@ -137,9 +139,23 @@ public:
     }
   }
 
-  void TextCallback(wxCommandEvent &event) {
+
+  void RedrawStatusBar() {
     std::string str = "";
-    str += std::to_string(strlen(this->m_textCtrl->GetValue()));
+    int position = this->m_textCtrl->GetInsertionPoint();
+
+    long x = 0;
+    long y = 0;
+    this->m_textCtrl->PositionToXY(position, &x, &y);
+
+    x++;
+    y++;
+
+    str += "Ln ";
+    str += std::to_string(x);
+    str += ", Col ";
+    str += std::to_string(y);
+
     this->m_statusBar->SetStatusText(str, 1);
   }
 };
