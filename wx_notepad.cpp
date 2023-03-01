@@ -87,6 +87,22 @@ public:
   void Exit(wxCommandEvent &event) { this->Destroy(); }
 
   void LoadFile(wxString filename) {
+    FILE *f=fopen(filename, "rb");
+
+    fseek(f, 0L, SEEK_END);
+    size_t len=ftell(f);
+    rewind(f);
+
+    char buf[len+1];
+    fread(buf, 1, len, f);
+    fclose(f);
+
+    buf[len]=0;
+
+    this->m_textCtrl->WriteText(buf);
+  }
+
+  void LoadFileWithLineEndings(wxString filename) {
     wxTextFile tfile;
     tfile.Open(filename);
     wxTextFileType fileType = tfile.GuessType();
