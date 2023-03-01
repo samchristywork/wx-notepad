@@ -145,6 +145,11 @@ public:
     this->m_textCtrl->SetInsertionPoint(0);
   }
 
+  void UpdateUICallback(wxUpdateUIEvent &event) {
+    this->RedrawStatusBar();
+
+    event.Skip();
+  }
 
   void RedrawStatusBar() {
     std::string str = "";
