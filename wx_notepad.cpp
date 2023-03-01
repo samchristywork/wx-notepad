@@ -79,7 +79,8 @@ public:
       return;
     }
 
-    this->LoadFile(openFileDialog.GetPath());
+    wxString filename = openFileDialog.GetPath();
+    this->LoadFile(filename);
   }
 
   void Save(wxCommandEvent &event) {}
@@ -88,8 +89,8 @@ public:
 
   void Exit(wxCommandEvent &event) { this->Destroy(); }
 
-  void LoadFile(wxString filename) {
-    FILE *f=fopen(filename, "rb");
+  void ManualLoadFile(wxString filename) {
+    FILE *f = fopen(filename, "rb");
 
     fseek(f, 0L, SEEK_END);
     size_t len=ftell(f);
@@ -137,6 +138,11 @@ public:
       }
       this->m_textCtrl->AppendText(text);
     }
+  }
+
+  void LoadFile(wxString filename) {
+    this->m_textCtrl->LoadFile(filename);
+    this->m_textCtrl->SetInsertionPoint(0);
   }
 
 
