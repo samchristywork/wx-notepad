@@ -35,6 +35,8 @@ class Frame : public MainFrame {
 public:
   wxString filename = "";
   wxTextFileType fileType;
+  wxString zoomLevel = "100%";
+  wxString textEncoding = "UTF-8";
 
   Frame(wxWindow *parent) : MainFrame(parent) {
     this->Show(true);
@@ -75,6 +77,9 @@ public:
   void UpdateTitle() {
     wxString title = "";
 
+    if (this->m_textCtrl->IsModified()) {
+      title += "*";
+    }
 
     if (this->filename == "") {
       title += "Untitled - wxNotepad";
@@ -114,14 +119,14 @@ public:
     FILE *f = fopen(filename, "rb");
 
     fseek(f, 0L, SEEK_END);
-    size_t len=ftell(f);
+    size_t len = ftell(f);
     rewind(f);
 
-    char buf[len+1];
+    char buf[len + 1];
     fread(buf, 1, len, f);
     fclose(f);
 
-    buf[len]=0;
+    buf[len] = 0;
 
     this->m_textCtrl->WriteText(buf);
   }
@@ -199,6 +204,8 @@ public:
 
     this->m_statusBar->SetStatusText(str, 1);
 
+    this->m_statusBar->SetStatusText(this->zoomLevel, 2);
+
     switch (this->fileType) {
     case wxTextFileType_Unix: {
       this->m_statusBar->SetStatusText("Unix (LF)", 3);
@@ -220,11 +227,15 @@ public:
       break;
     }
     }
+
+    this->m_statusBar->SetStatusText(this->textEncoding, 4);
+
+    this->UpdateTitle();
   }
 };
 
 bool App::OnInit() {
-  if (wxApp::argc==1) {
+  if (wxApp::argc == 1) {
     new Frame(NULL);
     return true;
   }
