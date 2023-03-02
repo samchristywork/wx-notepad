@@ -33,6 +33,8 @@ void add_menu_item(wxMenu *menu, wxString text, int id) {
 
 class Frame : public MainFrame {
 public:
+  wxString filename = "";
+
   Frame(wxWindow *parent) : MainFrame(parent) {
     this->Show(true);
 
@@ -72,8 +74,15 @@ public:
   void UpdateTitle() {
     wxString title = "";
 
-    title += "Untitled - wxNotepad";
-    this->SetTitle(title);
+
+    if (this->filename == "") {
+      title += "Untitled - wxNotepad";
+      this->SetTitle(title);
+    } else {
+
+      title += this->filename + " - wxNotepad";
+      this->SetTitle(title);
+    }
   }
 
   void New(wxCommandEvent &event) { this->m_textCtrl->SetValue(""); }
@@ -152,6 +161,8 @@ public:
   }
 
   void LoadFile(wxString filename) {
+
+    this->filename = filename;
     this->m_textCtrl->LoadFile(filename);
     this->m_textCtrl->SetInsertionPoint(0);
     this->UpdateTitle();
