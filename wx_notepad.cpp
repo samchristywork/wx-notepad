@@ -34,6 +34,7 @@ void add_menu_item(wxMenu *menu, wxString text, int id) {
 class Frame : public MainFrame {
 public:
   wxString filename = "";
+  wxTextFileType fileType;
 
   Frame(wxWindow *parent) : MainFrame(parent) {
     this->Show(true);
@@ -128,14 +129,14 @@ public:
   void LoadFileWithLineEndings(wxString filename) {
     wxTextFile tfile;
     tfile.Open(filename);
-    wxTextFileType fileType = tfile.GuessType();
+    this->fileType = tfile.GuessType();
 
     wxString text = tfile.GetFirstLine();
     this->m_textCtrl->SetValue(text);
 
     while (!tfile.Eof()) {
       text = tfile.GetNextLine();
-      switch (fileType) {
+      switch (this->fileType) {
       case wxTextFileType_Unix: {
         this->m_textCtrl->AppendText("\n");
         break;
@@ -158,9 +159,15 @@ public:
       }
       this->m_textCtrl->AppendText(text);
     }
+
+    tfile.Close();
   }
 
   void LoadFile(wxString filename) {
+    wxTextFile tfile;
+    tfile.Open(filename);
+    this->fileType = tfile.GuessType();
+    tfile.Close();
 
     this->filename = filename;
     this->m_textCtrl->LoadFile(filename);
