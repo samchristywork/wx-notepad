@@ -36,6 +36,8 @@ public:
   Frame(wxWindow *parent) : MainFrame(parent) {
     this->Show(true);
 
+    this->UpdateTitle();
+
     wxMenuBar *menuBar = new wxMenuBar(0);
 
     wxMenu *menuFile = new wxMenu();
@@ -65,6 +67,13 @@ public:
     this->m_statusBar->SetFieldsCount(5, widths);
 
     this->RedrawStatusBar();
+  }
+
+  void UpdateTitle() {
+    wxString title = "";
+
+    title += "Untitled - wxNotepad";
+    this->SetTitle(title);
   }
 
   void New(wxCommandEvent &event) { this->m_textCtrl->SetValue(""); }
@@ -145,6 +154,7 @@ public:
   void LoadFile(wxString filename) {
     this->m_textCtrl->LoadFile(filename);
     this->m_textCtrl->SetInsertionPoint(0);
+    this->UpdateTitle();
   }
 
   void UpdateUICallback(wxUpdateUIEvent &event) {
