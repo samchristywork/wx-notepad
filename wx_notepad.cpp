@@ -168,6 +168,28 @@ public:
     str += std::to_string(y);
 
     this->m_statusBar->SetStatusText(str, 1);
+
+    switch (this->fileType) {
+    case wxTextFileType_Unix: {
+      this->m_statusBar->SetStatusText("Unix (LF)", 3);
+      break;
+    }
+    case wxTextFileType_Dos: {
+      this->m_statusBar->SetStatusText("Windows (CRLF)", 3);
+      break;
+    }
+    case wxTextFileType_Mac: {
+      this->m_statusBar->SetStatusText("Mac (CR)", 3);
+      break;
+    }
+    case wxTextFileType_Os2: {
+      this->m_statusBar->SetStatusText("OS2 (LFCR)", 3);
+      break;
+    }
+    default: {
+      break;
+    }
+    }
   }
 };
 
