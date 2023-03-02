@@ -40,11 +40,13 @@ public:
 
     wxMenu *menuFile = new wxMenu();
 
-    add_menu_item(menuFile, wxString(wxT("New")), ID_New);
-    add_menu_item(menuFile, wxString(wxT("New Window")), ID_New_Window);
+    add_menu_item(menuFile, wxString(wxT("New\tCtrl+N")), ID_New);
+    add_menu_item(menuFile, wxString(wxT("New Window\tCtrl+Shift+N")),
+                  ID_New_Window);
     add_menu_item(menuFile, wxString(wxT("Open...\tCtrl-O")), ID_Open);
     add_menu_item(menuFile, wxString(wxT("Save\tCtrl-S")), ID_Save);
-    add_menu_item(menuFile, wxString(wxT("Save As...")), ID_Save_As);
+    add_menu_item(menuFile, wxString(wxT("Save As...\tCtrl+Shift+S")),
+                  ID_Save_As);
     menuFile->AppendSeparator();
     add_menu_item(menuFile, wxString(wxT("Exit")), ID_Exit);
 
