@@ -109,9 +109,22 @@ public:
     this->LoadFile(filename);
   }
 
-  void Save(wxCommandEvent &event) {}
+  void Save(wxCommandEvent &event) {
+    wxString text = this->m_textCtrl->GetValue();
 
-  void SaveAs(wxCommandEvent &event) {}
+    wxFileDialog dialog(this, "Save file...", "", "",
+                        "All files (*.*)|*.*",
+                        wxFD_SAVE);
+    if (dialog.ShowModal() == wxID_OK) {
+      wxFile file(dialog.GetPath(), wxFile::write);
+      if (file.IsOpened()) {
+        file.Write(text);
+        file.Close();
+      }
+    }
+
+    return;
+  }
 
   void Exit(wxCommandEvent &event) { this->Destroy(); }
 
