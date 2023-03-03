@@ -112,6 +112,10 @@ public:
   void Save(wxCommandEvent &event) {
     wxString text = this->m_textCtrl->GetValue();
 
+
+  void SaveAs(wxCommandEvent &event) {
+    wxString text = this->m_textCtrl->GetValue();
+
     wxFileDialog dialog(this, "Save .txt file...", "", "",
                         "All files (*.*)|*.* | Text files (*.txt) | *.txt",
                         wxFD_SAVE);
