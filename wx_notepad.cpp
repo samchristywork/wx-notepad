@@ -132,6 +132,7 @@ public:
         this->m_textCtrl->SetModified(false);
       }
     }
+    this->UpdateTitle();
     return;
   }
 
@@ -146,9 +147,11 @@ public:
       if (file.IsOpened()) {
         file.Write(text);
         file.Close();
+        this->filename=dialog.GetPath();
         this->m_textCtrl->SetModified(false);
       }
     }
+    this->UpdateTitle();
 
     return;
   }
