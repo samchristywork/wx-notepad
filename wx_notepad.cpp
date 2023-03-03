@@ -121,6 +121,7 @@ public:
         if (file.IsOpened()) {
           file.Write(text);
           file.Close();
+          this->m_textCtrl->SetModified(false);
         }
       }
     } else {
@@ -128,6 +129,7 @@ public:
       if (file.IsOpened()) {
         file.Write(text);
         file.Close();
+        this->m_textCtrl->SetModified(false);
       }
     }
     return;
@@ -144,6 +146,7 @@ public:
       if (file.IsOpened()) {
         file.Write(text);
         file.Close();
+        this->m_textCtrl->SetModified(false);
       }
     }
 
