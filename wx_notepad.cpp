@@ -112,6 +112,26 @@ public:
   void Save(wxCommandEvent &event) {
     wxString text = this->m_textCtrl->GetValue();
 
+    if (this->filename == "") {
+      wxFileDialog dialog(this, "Save .txt file...", "", "",
+                          "All files (*.*)|*.* | Text files (*.txt) | *.txt",
+                          wxFD_SAVE);
+      if (dialog.ShowModal() == wxID_OK) {
+        wxFile file(dialog.GetPath(), wxFile::write);
+        if (file.IsOpened()) {
+          file.Write(text);
+          file.Close();
+        }
+      }
+    } else {
+      wxFile file(this->filename, wxFile::write);
+      if (file.IsOpened()) {
+        file.Write(text);
+        file.Close();
+      }
+    }
+    return;
+  }
 
   void SaveAs(wxCommandEvent &event) {
     wxString text = this->m_textCtrl->GetValue();
