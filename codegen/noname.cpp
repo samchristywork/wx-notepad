@@ -85,3 +85,78 @@ GoToFrame::GoToFrame( wxWindow* parent, wxWindowID id, const wxString& title, co
 GoToFrame::~GoToFrame()
 {
 }
+
+MyFrame3::MyFrame3( wxWindow* parent, wxWindowID id, const wxString& title, const wxPoint& pos, const wxSize& size, long style ) : wxFrame( parent, id, title, pos, size, style )
+{
+	this->SetSizeHints( wxDefaultSize, wxDefaultSize );
+
+	wxBoxSizer* bSizer4;
+	bSizer4 = new wxBoxSizer( wxHORIZONTAL );
+
+	wxBoxSizer* bSizer5;
+	bSizer5 = new wxBoxSizer( wxVERTICAL );
+
+	wxBoxSizer* bSizer7;
+	bSizer7 = new wxBoxSizer( wxVERTICAL );
+
+	wxBoxSizer* bSizer8;
+	bSizer8 = new wxBoxSizer( wxHORIZONTAL );
+
+	m_staticText2 = new wxStaticText( this, wxID_ANY, wxT("Find what"), wxDefaultPosition, wxDefaultSize, 0 );
+	m_staticText2->Wrap( -1 );
+	bSizer8->Add( m_staticText2, 0, wxALL, 5 );
+
+	m_textCtrl3 = new wxTextCtrl( this, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0 );
+	bSizer8->Add( m_textCtrl3, 0, wxALL, 5 );
+
+
+	bSizer7->Add( bSizer8, 1, wxEXPAND, 5 );
+
+
+	bSizer5->Add( bSizer7, 1, wxEXPAND, 5 );
+
+	wxBoxSizer* bSizer9;
+	bSizer9 = new wxBoxSizer( wxHORIZONTAL );
+
+	m_staticText3 = new wxStaticText( this, wxID_ANY, wxT("MyLabel"), wxDefaultPosition, wxDefaultSize, 0 );
+	m_staticText3->Wrap( -1 );
+	bSizer9->Add( m_staticText3, 0, wxALL, 5 );
+
+	m_panel2 = new wxPanel( this, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL );
+	bSizer9->Add( m_panel2, 1, wxEXPAND | wxALL, 5 );
+
+	wxString m_radioBox1Choices[] = { wxT("Up"), wxT("Down") };
+	int m_radioBox1NChoices = sizeof( m_radioBox1Choices ) / sizeof( wxString );
+	m_radioBox1 = new wxRadioBox( this, wxID_ANY, wxT("Direction"), wxDefaultPosition, wxDefaultSize, m_radioBox1NChoices, m_radioBox1Choices, 1, wxRA_SPECIFY_ROWS );
+	m_radioBox1->SetSelection( 0 );
+	bSizer9->Add( m_radioBox1, 0, wxALL, 5 );
+
+
+	bSizer5->Add( bSizer9, 1, wxEXPAND, 5 );
+
+
+	bSizer4->Add( bSizer5, 1, wxEXPAND, 5 );
+
+	wxBoxSizer* bSizer6;
+	bSizer6 = new wxBoxSizer( wxVERTICAL );
+
+	m_button6 = new wxButton( this, wxID_ANY, wxT("Find Next"), wxDefaultPosition, wxDefaultSize, 0 );
+	bSizer6->Add( m_button6, 0, wxALL, 5 );
+
+	m_button7 = new wxButton( this, wxID_ANY, wxT("Cancel"), wxDefaultPosition, wxDefaultSize, 0 );
+	bSizer6->Add( m_button7, 0, wxALL, 5 );
+
+
+	bSizer4->Add( bSizer6, 0, 0, 5 );
+
+
+	this->SetSizer( bSizer4 );
+	this->Layout();
+	bSizer4->Fit( this );
+
+	this->Centre( wxBOTH );
+}
+
+MyFrame3::~MyFrame3()
+{
+}

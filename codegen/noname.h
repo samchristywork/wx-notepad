@@ -24,6 +24,7 @@
 #include <wx/bitmap.h>
 #include <wx/image.h>
 #include <wx/icon.h>
+#include <wx/radiobox.h>
 
 ///////////////////////////////////////////////////////////////////////////
 
@@ -74,6 +75,30 @@ class GoToFrame : public wxFrame
 		GoToFrame( wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = wxT("Go To Line"), const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( -1,-1 ), long style = wxDEFAULT_FRAME_STYLE|wxTAB_TRAVERSAL );
 
 		~GoToFrame();
+
+};
+
+///////////////////////////////////////////////////////////////////////////////
+/// Class MyFrame3
+///////////////////////////////////////////////////////////////////////////////
+class MyFrame3 : public wxFrame
+{
+	private:
+
+	protected:
+		wxStaticText* m_staticText2;
+		wxTextCtrl* m_textCtrl3;
+		wxStaticText* m_staticText3;
+		wxPanel* m_panel2;
+		wxRadioBox* m_radioBox1;
+		wxButton* m_button6;
+		wxButton* m_button7;
+
+	public:
+
+		MyFrame3( wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = wxT("Find"), const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( -1,-1 ), long style = wxDEFAULT_FRAME_STYLE|wxTAB_TRAVERSAL );
+
+		~MyFrame3();
 
 };
 
