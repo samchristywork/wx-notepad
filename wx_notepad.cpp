@@ -46,6 +46,10 @@ public:
     wxMenuBar *menuBar = new wxMenuBar(0);
 
     wxMenu *menuFile = new wxMenu();
+    wxMenu *menuEdit = new wxMenu();
+    wxMenu *menuFormat = new wxMenu();
+    wxMenu *menuView = new wxMenu();
+    wxMenu *menuHelp = new wxMenu();
 
     add_menu_item(menuFile, wxString(wxT("New\tCtrl+N")), ID_New);
     add_menu_item(menuFile, wxString(wxT("New Window\tCtrl+Shift+N")),
@@ -58,6 +62,10 @@ public:
     add_menu_item(menuFile, wxString(wxT("Exit")), ID_Exit);
 
     menuBar->Append(menuFile, wxT("File"));
+    menuBar->Append(menuEdit, wxT("Edit"));
+    menuBar->Append(menuFormat, wxT("Format"));
+    menuBar->Append(menuView, wxT("View"));
+    menuBar->Append(menuHelp, wxT("Help"));
 
     this->SetMenuBar(menuBar);
 
