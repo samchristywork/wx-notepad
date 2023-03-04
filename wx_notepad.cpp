@@ -61,6 +61,22 @@ public:
     menuFile->AppendSeparator();
     add_menu_item(menuFile, wxString(wxT("Exit")), ID_Exit);
 
+    add_menu_item(menuEdit, wxString(wxT("Undo\tCtrl+Z")), ID_Exit);
+    menuFile->AppendSeparator();
+    add_menu_item(menuEdit, wxString(wxT("Cut\tCtrl+X")), ID_Exit);
+    add_menu_item(menuEdit, wxString(wxT("Copy\tCtrl+C")), ID_Exit);
+    add_menu_item(menuEdit, wxString(wxT("Paste\tCtrl+V")), ID_Exit);
+    add_menu_item(menuEdit, wxString(wxT("Delete\tDel")), ID_Exit);
+    menuFile->AppendSeparator();
+    add_menu_item(menuEdit, wxString(wxT("Find...\tCtrl+F")), ID_Exit);
+    add_menu_item(menuEdit, wxString(wxT("Find Next\tF3")), ID_Exit);
+    add_menu_item(menuEdit, wxString(wxT("Find Previous\tShift+F3")), ID_Exit);
+    add_menu_item(menuEdit, wxString(wxT("Replace...\tCtrl+H")), ID_Exit);
+    add_menu_item(menuEdit, wxString(wxT("Go To...\tCtrl+G")), ID_Exit);
+    menuFile->AppendSeparator();
+    add_menu_item(menuEdit, wxString(wxT("Select All\tCtrl+A")), ID_Exit);
+    add_menu_item(menuEdit, wxString(wxT("Time/Date\tF5")), ID_Exit);
+
     menuBar->Append(menuFile, wxT("File"));
     menuBar->Append(menuEdit, wxT("Edit"));
     menuBar->Append(menuFormat, wxT("Format"));
@@ -155,7 +171,7 @@ public:
       if (file.IsOpened()) {
         file.Write(text);
         file.Close();
-        this->filename=dialog.GetPath();
+        this->filename = dialog.GetPath();
         this->m_textCtrl->SetModified(false);
       }
     }
