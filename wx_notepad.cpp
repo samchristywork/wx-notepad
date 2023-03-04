@@ -208,15 +208,19 @@ public:
   void Exit(wxCommandEvent &event) { this->Destroy(); }
 
   void Undo(wxCommandEvent &event) {
+    this->m_textCtrl->Undo();
   }
 
   void Cut(wxCommandEvent &event) {
+    this->m_textCtrl->Cut();
   }
 
   void Copy(wxCommandEvent &event) {
+    this->m_textCtrl->Copy();
   }
 
   void Paste(wxCommandEvent &event) {
+    this->m_textCtrl->Paste();
   }
 
   void Delete(wxCommandEvent &event) {
