@@ -417,7 +417,6 @@ bool App::OnInit() {
   }
 
   for (int i = 1; i < wxApp::argc; i++) {
-    puts(wxApp::argv[i]);
     Frame *f = new Frame(NULL);
     f->LoadFile(wxApp::argv[i]);
   }

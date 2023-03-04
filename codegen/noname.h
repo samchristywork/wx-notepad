@@ -18,6 +18,12 @@
 #include <wx/textctrl.h>
 #include <wx/sizer.h>
 #include <wx/frame.h>
+#include <wx/stattext.h>
+#include <wx/panel.h>
+#include <wx/button.h>
+#include <wx/bitmap.h>
+#include <wx/image.h>
+#include <wx/icon.h>
 
 ///////////////////////////////////////////////////////////////////////////
 
@@ -57,10 +63,15 @@ class GoToFrame : public wxFrame
 	private:
 
 	protected:
+		wxStaticText* m_staticText1;
+		wxTextCtrl* m_textCtrl2;
+		wxPanel* m_panel1;
+		wxButton* m_button1;
+		wxButton* m_button2;
 
 	public:
 
-		GoToFrame( wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = wxEmptyString, const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( 500,300 ), long style = wxDEFAULT_FRAME_STYLE|wxTAB_TRAVERSAL );
+		GoToFrame( wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = wxT("Go To Line"), const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( -1,-1 ), long style = wxDEFAULT_FRAME_STYLE|wxTAB_TRAVERSAL );
 
 		~GoToFrame();
 
