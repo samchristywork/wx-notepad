@@ -43,6 +43,13 @@ void add_menu_item(wxMenu *menu, wxString text, int id) {
   menu->Append(menuItem);
 }
 
+class GoToWindow : public GoToFrame {
+public:
+  GoToWindow(wxWindow *parent) : GoToFrame(parent) {
+    this->Show(true);
+  }
+};
+
 class Frame : public MainFrame {
 public:
   wxString filename = "";
@@ -240,6 +247,7 @@ public:
   }
 
   void GoTo(wxCommandEvent &event) {
+    new GoToWindow(this);
   }
 
   void SelectAll(wxCommandEvent &event) {

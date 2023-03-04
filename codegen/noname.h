@@ -49,3 +49,20 @@ class MainFrame : public wxFrame
 
 };
 
+///////////////////////////////////////////////////////////////////////////////
+/// Class GoToFrame
+///////////////////////////////////////////////////////////////////////////////
+class GoToFrame : public wxFrame
+{
+	private:
+
+	protected:
+
+	public:
+
+		GoToFrame( wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = wxEmptyString, const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( 500,300 ), long style = wxDEFAULT_FRAME_STYLE|wxTAB_TRAVERSAL );
+
+		~GoToFrame();
+
+};
+
