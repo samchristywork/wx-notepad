@@ -17,6 +17,18 @@ enum {
   ID_Open,
   ID_Save,
   ID_Save_As,
+  ID_Undo,
+  ID_Cut,
+  ID_Copy,
+  ID_Paste,
+  ID_Delete,
+  ID_Find,
+  ID_FindNext,
+  ID_FindPrevious,
+  ID_Replace,
+  ID_GoTo,
+  ID_SelectAll,
+  ID_TimeDate,
 };
 
 class App : public wxApp {
@@ -61,21 +73,21 @@ public:
     menuFile->AppendSeparator();
     add_menu_item(menuFile, wxString(wxT("Exit")), ID_Exit);
 
-    add_menu_item(menuEdit, wxString(wxT("Undo\tCtrl+Z")), ID_Exit);
-    menuFile->AppendSeparator();
-    add_menu_item(menuEdit, wxString(wxT("Cut\tCtrl+X")), ID_Exit);
-    add_menu_item(menuEdit, wxString(wxT("Copy\tCtrl+C")), ID_Exit);
-    add_menu_item(menuEdit, wxString(wxT("Paste\tCtrl+V")), ID_Exit);
-    add_menu_item(menuEdit, wxString(wxT("Delete\tDel")), ID_Exit);
-    menuFile->AppendSeparator();
-    add_menu_item(menuEdit, wxString(wxT("Find...\tCtrl+F")), ID_Exit);
-    add_menu_item(menuEdit, wxString(wxT("Find Next\tF3")), ID_Exit);
-    add_menu_item(menuEdit, wxString(wxT("Find Previous\tShift+F3")), ID_Exit);
-    add_menu_item(menuEdit, wxString(wxT("Replace...\tCtrl+H")), ID_Exit);
-    add_menu_item(menuEdit, wxString(wxT("Go To...\tCtrl+G")), ID_Exit);
-    menuFile->AppendSeparator();
-    add_menu_item(menuEdit, wxString(wxT("Select All\tCtrl+A")), ID_Exit);
-    add_menu_item(menuEdit, wxString(wxT("Time/Date\tF5")), ID_Exit);
+    add_menu_item(menuEdit, wxString(wxT("Undo\tCtrl+Z")), ID_Undo);
+    menuEdit->AppendSeparator();
+    add_menu_item(menuEdit, wxString(wxT("Cut\tCtrl+X")), ID_Cut);
+    add_menu_item(menuEdit, wxString(wxT("Copy\tCtrl+C")), ID_Copy);
+    add_menu_item(menuEdit, wxString(wxT("Paste\tCtrl+V")), ID_Paste);
+    add_menu_item(menuEdit, wxString(wxT("Delete\tDel")), ID_Delete);
+    menuEdit->AppendSeparator();
+    add_menu_item(menuEdit, wxString(wxT("Find...\tCtrl+F")), ID_Find);
+    add_menu_item(menuEdit, wxString(wxT("Find Next\tF3")), ID_FindNext);
+    add_menu_item(menuEdit, wxString(wxT("Find Previous\tShift+F3")), ID_FindPrevious);
+    add_menu_item(menuEdit, wxString(wxT("Replace...\tCtrl+H")), ID_Replace);
+    add_menu_item(menuEdit, wxString(wxT("Go To...\tCtrl+G")), ID_GoTo);
+    menuEdit->AppendSeparator();
+    add_menu_item(menuEdit, wxString(wxT("Select All\tCtrl+A")), ID_SelectAll);
+    add_menu_item(menuEdit, wxString(wxT("Time/Date\tF5")), ID_TimeDate);
 
     menuBar->Append(menuFile, wxT("File"));
     menuBar->Append(menuEdit, wxT("Edit"));
@@ -91,6 +103,19 @@ public:
     Bind(wxEVT_MENU, &Frame::Save, this, ID_Save);
     Bind(wxEVT_MENU, &Frame::SaveAs, this, ID_Save_As);
     Bind(wxEVT_MENU, &Frame::Exit, this, ID_Exit);
+
+    Bind(wxEVT_MENU, &Frame::Undo, this, ID_Undo);
+    Bind(wxEVT_MENU, &Frame::Cut, this, ID_Cut);
+    Bind(wxEVT_MENU, &Frame::Copy, this, ID_Copy);
+    Bind(wxEVT_MENU, &Frame::Paste, this, ID_Paste);
+    Bind(wxEVT_MENU, &Frame::Delete, this, ID_Delete);
+    Bind(wxEVT_MENU, &Frame::Find, this, ID_Find);
+    Bind(wxEVT_MENU, &Frame::FindNext, this, ID_FindNext);
+    Bind(wxEVT_MENU, &Frame::FindPrevious, this, ID_FindPrevious);
+    Bind(wxEVT_MENU, &Frame::Replace, this, ID_Replace);
+    Bind(wxEVT_MENU, &Frame::GoTo, this, ID_GoTo);
+    Bind(wxEVT_MENU, &Frame::SelectAll, this, ID_SelectAll);
+    Bind(wxEVT_MENU, &Frame::TimeDate, this, ID_TimeDate);
 
     int widths[] = {-1, 100, 100, 100, 100};
     this->m_statusBar->SetFieldsCount(5, widths);
@@ -181,6 +206,42 @@ public:
   }
 
   void Exit(wxCommandEvent &event) { this->Destroy(); }
+
+  void Undo(wxCommandEvent &event) {
+  }
+
+  void Cut(wxCommandEvent &event) {
+  }
+
+  void Copy(wxCommandEvent &event) {
+  }
+
+  void Paste(wxCommandEvent &event) {
+  }
+
+  void Delete(wxCommandEvent &event) {
+  }
+
+  void Find(wxCommandEvent &event) {
+  }
+
+  void FindNext(wxCommandEvent &event) {
+  }
+
+  void FindPrevious(wxCommandEvent &event) {
+  }
+
+  void Replace(wxCommandEvent &event) {
+  }
+
+  void GoTo(wxCommandEvent &event) {
+  }
+
+  void SelectAll(wxCommandEvent &event) {
+  }
+
+  void TimeDate(wxCommandEvent &event) {
+  }
 
   void ManualLoadFile(wxString filename) {
     FILE *f = fopen(filename, "rb");
