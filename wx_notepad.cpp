@@ -232,6 +232,10 @@ public:
   }
 
   void Delete(wxCommandEvent &event) {
+    long from;
+    long to;
+    this->m_textCtrl->GetSelection(&from, &to);
+    this->m_textCtrl->Remove(from, to);
   }
 
   void Find(wxCommandEvent &event) {
@@ -251,6 +255,7 @@ public:
   }
 
   void SelectAll(wxCommandEvent &event) {
+    this->m_textCtrl->SetSelection(0, -1);
   }
 
   void TimeDate(wxCommandEvent &event) {
