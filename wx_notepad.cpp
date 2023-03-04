@@ -82,7 +82,8 @@ public:
     menuEdit->AppendSeparator();
     add_menu_item(menuEdit, wxString(wxT("Find...\tCtrl+F")), ID_Find);
     add_menu_item(menuEdit, wxString(wxT("Find Next\tF3")), ID_FindNext);
-    add_menu_item(menuEdit, wxString(wxT("Find Previous\tShift+F3")), ID_FindPrevious);
+    add_menu_item(menuEdit, wxString(wxT("Find Previous\tShift+F3")),
+                  ID_FindPrevious);
     add_menu_item(menuEdit, wxString(wxT("Replace...\tCtrl+H")), ID_Replace);
     add_menu_item(menuEdit, wxString(wxT("Go To...\tCtrl+G")), ID_GoTo);
     menuEdit->AppendSeparator();
@@ -245,6 +246,36 @@ public:
   }
 
   void TimeDate(wxCommandEvent &event) {
+    wxString str = "";
+    wxDateTime dt = wxDateTime::Now();
+
+    // Hour
+    if (dt.GetHour() > 12) {
+      str += std::to_string(dt.GetHour() - 12);
+    } else {
+      str += std::to_string(dt.GetHour());
+    }
+    str += ":";
+
+    // Minute
+    for (int i = 0; i < 2 - std::to_string(dt.GetMinute()).length(); i++) {
+      str += "0";
+    }
+    str += std::to_string(dt.GetMinute());
+
+    // AM/PM
+    if (dt.GetHour() > 12) {
+      str += " PM ";
+    } else {
+      str += " AM ";
+    }
+
+    str+=std::to_string(dt.GetMonth()+1);
+    str += "/";
+    str+=std::to_string(dt.GetDay());
+    str += "/";
+    str+=std::to_string(dt.GetYear());
+    this->m_textCtrl->WriteText(str);
   }
 
   void ManualLoadFile(wxString filename) {
