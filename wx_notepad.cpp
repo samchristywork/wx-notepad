@@ -31,6 +31,8 @@ enum {
   ID_TimeDate,
   ID_WordWrap,
   ID_Font,
+  ID_Zoom,
+  ID_StatusBar,
 };
 
 class App : public wxApp {
@@ -102,6 +104,9 @@ public:
     add_menu_item(menuFormat, wxString(wxT("Word Wrap")), ID_WordWrap);
     add_menu_item(menuFormat, wxString(wxT("Font...")), ID_Font);
 
+    add_menu_item(menuView, wxString(wxT("Zoom")), ID_Zoom);
+    add_menu_item(menuView, wxString(wxT("Status Bar")), ID_StatusBar);
+
     menuBar->Append(menuFile, wxT("File"));
     menuBar->Append(menuEdit, wxT("Edit"));
     menuBar->Append(menuFormat, wxT("Format"));
@@ -132,6 +137,9 @@ public:
 
     Bind(wxEVT_MENU, &Frame::WordWrap, this, ID_WordWrap);
     Bind(wxEVT_MENU, &Frame::Font, this, ID_Font);
+
+    Bind(wxEVT_MENU, &Frame::Zoom, this, ID_Zoom);
+    Bind(wxEVT_MENU, &Frame::StatusBar, this, ID_StatusBar);
 
     int widths[] = {-1, 100, 100, 100, 100};
     this->m_statusBar->SetFieldsCount(5, widths);
