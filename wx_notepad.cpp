@@ -325,6 +325,8 @@ public:
     if (this->zoomLevel > 500) {
       this->zoomLevel = 500;
     }
+
+    this->UpdateFontSize();
   }
 
   void ZoomOut(wxCommandEvent &event) {
@@ -332,9 +334,15 @@ public:
     if (this->zoomLevel < 10) {
       this->zoomLevel = 10;
     }
+
+    this->UpdateFontSize();
   }
 
-  void RestoreDefaultZoom(wxCommandEvent &event) {}
+  void RestoreDefaultZoom(wxCommandEvent &event) {
+    this->zoomLevel = 100;
+
+    this->UpdateFontSize();
+  }
 
   void StatusBar(wxCommandEvent &event) {
     bool shown = this->m_statusBar->IsShown();
