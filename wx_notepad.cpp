@@ -97,6 +97,9 @@ public:
     add_menu_item(menuEdit, wxString(wxT("Select All\tCtrl+A")), ID_SelectAll);
     add_menu_item(menuEdit, wxString(wxT("Time/Date\tF5")), ID_TimeDate);
 
+    add_menu_item(menuFormat, wxString(wxT("Word Wrap")), ID_WordWrap);
+    add_menu_item(menuFormat, wxString(wxT("Font...")), ID_Font);
+
     menuBar->Append(menuFile, wxT("File"));
     menuBar->Append(menuEdit, wxT("Edit"));
     menuBar->Append(menuFormat, wxT("Format"));
@@ -124,6 +127,9 @@ public:
     Bind(wxEVT_MENU, &Frame::GoTo, this, ID_GoTo);
     Bind(wxEVT_MENU, &Frame::SelectAll, this, ID_SelectAll);
     Bind(wxEVT_MENU, &Frame::TimeDate, this, ID_TimeDate);
+
+    Bind(wxEVT_MENU, &Frame::WordWrap, this, ID_WordWrap);
+    Bind(wxEVT_MENU, &Frame::Font, this, ID_Font);
 
     int widths[] = {-1, 100, 100, 100, 100};
     this->m_statusBar->SetFieldsCount(5, widths);
