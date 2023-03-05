@@ -349,6 +349,29 @@ public:
     this->m_statusBar->Show(!shown);
   }
 
+  void ViewHelp(wxCommandEvent &event) {
+#ifdef __WXGTK__
+    wxExecute("xdg-open https://github.com/samchristywork/wx-notepad/");
+#elif __WXMSW__
+    wxExecute("TODO");
+#else
+    wxExecute("TODO");
+#endif
+  }
+
+  void SendFeedback(wxCommandEvent &event) {
+#ifdef __WXGTK__
+    wxExecute("xdg-open https://github.com/samchristywork/wx-notepad/issues/");
+#elif __WXMSW__
+    wxExecute("TODO");
+#else
+    wxExecute("TODO");
+#endif
+  }
+
+  void AboutNotepad(wxCommandEvent &event) {
+  }
+
   void ManualLoadFile(wxString filename) {
     FILE *f = fopen(filename, "rb");
 
