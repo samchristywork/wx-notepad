@@ -313,6 +313,14 @@ public:
   void Font(wxCommandEvent &event) {
   }
 
+  void Zoom(wxCommandEvent &event) {
+  }
+
+  void StatusBar(wxCommandEvent &event) {
+    bool shown=this->m_statusBar->IsShown();
+    this->m_statusBar->Show(!shown);
+  }
+
   void ManualLoadFile(wxString filename) {
     FILE *f = fopen(filename, "rb");
 
