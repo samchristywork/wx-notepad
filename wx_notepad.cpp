@@ -7,6 +7,7 @@
 #include <string>
 #include <wx/filedlg.h>
 #include <wx/menu.h>
+#include <wx/mimetype.h>
 #include <wx/stc/stc.h>
 #include <wx/textfile.h>
 
@@ -350,23 +351,17 @@ public:
   }
 
   void ViewHelp(wxCommandEvent &event) {
-#ifdef __WXGTK__
-    wxExecute("xdg-open https://github.com/samchristywork/wx-notepad/");
-#elif __WXMSW__
-    wxExecute("TODO");
-#else
-    wxExecute("TODO");
-#endif
+    wxMimeTypesManager manager;
+    wxFileType *filetype = manager.GetFileTypeFromExtension("html");
+    wxString command = filetype->GetOpenCommand("https://github.com/samchristywork/wx-notepad/");
+    wxExecute(command);
   }
 
   void SendFeedback(wxCommandEvent &event) {
-#ifdef __WXGTK__
-    wxExecute("xdg-open https://github.com/samchristywork/wx-notepad/issues/");
-#elif __WXMSW__
-    wxExecute("TODO");
-#else
-    wxExecute("TODO");
-#endif
+    wxMimeTypesManager manager;
+    wxFileType *filetype = manager.GetFileTypeFromExtension("html");
+    wxString command = filetype->GetOpenCommand("https://github.com/samchristywork/wx-notepad/issues/");
+    wxExecute(command);
   }
 
   void AboutNotepad(wxCommandEvent &event) {
