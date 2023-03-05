@@ -51,16 +51,14 @@ void add_menu_item(wxMenu *menu, wxString text, int id) {
 
 class GoToWindow : public GoToFrame {
 public:
-  GoToWindow(wxWindow *parent) : GoToFrame(parent) {
-    this->Show(true);
-  }
+  GoToWindow(wxWindow *parent) : GoToFrame(parent) { this->Show(true); }
 };
 
 class Frame : public MainFrame {
 public:
   wxString filename = "";
   wxTextFileType fileType;
-  wxString zoomLevel = "100%";
+  int zoomLevel = 100;
   wxString textEncoding = "UTF-8";
 
   Frame(wxWindow *parent) : MainFrame(parent) {
@@ -240,21 +238,13 @@ public:
 
   void Exit(wxCommandEvent &event) { this->Destroy(); }
 
-  void Undo(wxCommandEvent &event) {
-    this->m_textCtrl->Undo();
-  }
+  void Undo(wxCommandEvent &event) { this->m_textCtrl->Undo(); }
 
-  void Cut(wxCommandEvent &event) {
-    this->m_textCtrl->Cut();
-  }
+  void Cut(wxCommandEvent &event) { this->m_textCtrl->Cut(); }
 
-  void Copy(wxCommandEvent &event) {
-    this->m_textCtrl->Copy();
-  }
+  void Copy(wxCommandEvent &event) { this->m_textCtrl->Copy(); }
 
-  void Paste(wxCommandEvent &event) {
-    this->m_textCtrl->Paste();
-  }
+  void Paste(wxCommandEvent &event) { this->m_textCtrl->Paste(); }
 
   void Delete(wxCommandEvent &event) {
     long from;
@@ -263,21 +253,15 @@ public:
     this->m_textCtrl->Remove(from, to);
   }
 
-  void Find(wxCommandEvent &event) {
-  }
+  void Find(wxCommandEvent &event) {}
 
-  void FindNext(wxCommandEvent &event) {
-  }
+  void FindNext(wxCommandEvent &event) {}
 
-  void FindPrevious(wxCommandEvent &event) {
-  }
+  void FindPrevious(wxCommandEvent &event) {}
 
-  void Replace(wxCommandEvent &event) {
-  }
+  void Replace(wxCommandEvent &event) {}
 
-  void GoTo(wxCommandEvent &event) {
-    new GoToWindow(this);
-  }
+  void GoTo(wxCommandEvent &event) { new GoToWindow(this); }
 
   void SelectAll(wxCommandEvent &event) {
     this->m_textCtrl->SetSelection(0, -1);
@@ -308,25 +292,37 @@ public:
       str += " AM ";
     }
 
-    str+=std::to_string(dt.GetMonth()+1);
+    str += std::to_string(dt.GetMonth() + 1);
     str += "/";
-    str+=std::to_string(dt.GetDay());
+    str += std::to_string(dt.GetDay());
     str += "/";
-    str+=std::to_string(dt.GetYear());
+    str += std::to_string(dt.GetYear());
     this->m_textCtrl->WriteText(str);
   }
 
   void WordWrap(wxCommandEvent &event) {
   }
 
-  void Font(wxCommandEvent &event) {
+  void Font(wxCommandEvent &event) {}
+
+  void ZoomIn(wxCommandEvent &event) {
+    this->zoomLevel += 10;
+    if (this->zoomLevel > 500) {
+      this->zoomLevel = 500;
+    }
   }
 
-  void Zoom(wxCommandEvent &event) {
+  void ZoomOut(wxCommandEvent &event) {
+    this->zoomLevel -= 10;
+    if (this->zoomLevel < 10) {
+      this->zoomLevel = 10;
+    }
   }
+
+  void RestoreDefaultZoom(wxCommandEvent &event) {}
 
   void StatusBar(wxCommandEvent &event) {
-    bool shown=this->m_statusBar->IsShown();
+    bool shown = this->m_statusBar->IsShown();
     this->m_statusBar->Show(!shown);
   }
 
@@ -419,7 +415,7 @@ public:
 
     this->m_statusBar->SetStatusText(str, 1);
 
-    this->m_statusBar->SetStatusText(this->zoomLevel, 2);
+    this->m_statusBar->SetStatusText(std::to_string(this->zoomLevel) + "%", 2);
 
     switch (this->fileType) {
     case wxTextFileType_Unix: {
