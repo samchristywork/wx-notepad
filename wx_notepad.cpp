@@ -4,11 +4,13 @@
 #include <wx/wx.h>
 #endif
 
-#include "codegen/noname.h"
 #include <string>
 #include <wx/filedlg.h>
 #include <wx/menu.h>
+#include <wx/stc/stc.h>
 #include <wx/textfile.h>
+
+#include "codegen/noname.h"
 
 enum {
   ID_Exit,

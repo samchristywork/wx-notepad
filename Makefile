@@ -1,7 +1,7 @@
 CC := clang++
 
-CFLAGS := $(shell wx-config --cxxflags)
-LIBS := $(shell wx-config --libs)
+CFLAGS := $(shell wx-config --cxxflags std stc)
+LIBS := $(shell wx-config --libs std stc)
 
 all: build/wx_notepad
 
