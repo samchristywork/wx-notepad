@@ -297,6 +297,12 @@ public:
     this->m_textCtrl->WriteText(str);
   }
 
+  void WordWrap(wxCommandEvent &event) {
+  }
+
+  void Font(wxCommandEvent &event) {
+  }
+
   void ManualLoadFile(wxString filename) {
     FILE *f = fopen(filename, "rb");
 
