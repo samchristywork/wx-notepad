@@ -367,6 +367,12 @@ public:
   void AboutNotepad(wxCommandEvent &event) {
   }
 
+  void UpdateFontSize() {
+    wxFont font = this->m_textCtrl->GetFont();
+    font.SetPointSize(12 * this->zoomLevel / 100);
+    this->m_textCtrl->SetFont(font);
+  }
+
   void ManualLoadFile(wxString filename) {
     FILE *f = fopen(filename, "rb");
 
