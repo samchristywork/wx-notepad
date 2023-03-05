@@ -37,6 +37,9 @@ enum {
   ID_ZoomIn,
   ID_ZoomOut,
   ID_RestoreDefaultZoom,
+  ID_ViewHelp,
+  ID_SendFeedback,
+  ID_AboutNotepad,
 };
 
 class App : public wxApp {
@@ -110,9 +113,14 @@ public:
     menuView->AppendSubMenu(menuZoom, wxString(wxT("Zoom")));
     add_menu_item(menuZoom, wxString(wxT("Zoom In\tCtrl++")), ID_ZoomIn);
     add_menu_item(menuZoom, wxString(wxT("Zoom Out\tCtrl+-")), ID_ZoomOut);
-    add_menu_item(menuZoom, wxString(wxT("Restore Default Zoom\tCtrl+O")),
+    add_menu_item(menuZoom, wxString(wxT("Restore Default Zoom\tCtrl+0")),
                   ID_RestoreDefaultZoom);
     add_menu_item(menuView, wxString(wxT("Status Bar")), ID_StatusBar);
+
+    add_menu_item(menuHelp, wxString(wxT("View Help")), ID_ViewHelp);
+    add_menu_item(menuHelp, wxString(wxT("Send Feedback")), ID_SendFeedback);
+    menuHelp->AppendSeparator();
+    add_menu_item(menuHelp, wxString(wxT("About Notepad")), ID_AboutNotepad);
 
     menuBar->Append(menuFile, wxT("File"));
     menuBar->Append(menuEdit, wxT("Edit"));
@@ -149,6 +157,10 @@ public:
     Bind(wxEVT_MENU, &Frame::ZoomOut, this, ID_ZoomOut);
     Bind(wxEVT_MENU, &Frame::RestoreDefaultZoom, this, ID_RestoreDefaultZoom);
     Bind(wxEVT_MENU, &Frame::StatusBar, this, ID_StatusBar);
+
+    Bind(wxEVT_MENU, &Frame::ViewHelp, this, ID_ViewHelp);
+    Bind(wxEVT_MENU, &Frame::SendFeedback, this, ID_SendFeedback);
+    Bind(wxEVT_MENU, &Frame::AboutNotepad, this, ID_AboutNotepad);
 
     int widths[] = {-1, 100, 100, 100, 100};
     this->m_statusBar->SetFieldsCount(5, widths);
