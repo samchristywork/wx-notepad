@@ -31,8 +31,10 @@ enum {
   ID_TimeDate,
   ID_WordWrap,
   ID_Font,
-  ID_Zoom,
   ID_StatusBar,
+  ID_ZoomIn,
+  ID_ZoomOut,
+  ID_RestoreDefaultZoom,
 };
 
 class App : public wxApp {
@@ -73,6 +75,7 @@ public:
     wxMenu *menuFormat = new wxMenu();
     wxMenu *menuView = new wxMenu();
     wxMenu *menuHelp = new wxMenu();
+    wxMenu *menuZoom = new wxMenu();
 
     add_menu_item(menuFile, wxString(wxT("New\tCtrl+N")), ID_New);
     add_menu_item(menuFile, wxString(wxT("New Window\tCtrl+Shift+N")),
@@ -104,7 +107,11 @@ public:
     add_menu_item(menuFormat, wxString(wxT("Word Wrap")), ID_WordWrap);
     add_menu_item(menuFormat, wxString(wxT("Font...")), ID_Font);
 
-    add_menu_item(menuView, wxString(wxT("Zoom")), ID_Zoom);
+    menuView->AppendSubMenu(menuZoom, wxString(wxT("Zoom")));
+    add_menu_item(menuZoom, wxString(wxT("Zoom In\tCtrl++")), ID_ZoomIn);
+    add_menu_item(menuZoom, wxString(wxT("Zoom Out\tCtrl+-")), ID_ZoomOut);
+    add_menu_item(menuZoom, wxString(wxT("Restore Default Zoom\tCtrl+O")),
+                  ID_RestoreDefaultZoom);
     add_menu_item(menuView, wxString(wxT("Status Bar")), ID_StatusBar);
 
     menuBar->Append(menuFile, wxT("File"));
@@ -138,7 +145,9 @@ public:
     Bind(wxEVT_MENU, &Frame::WordWrap, this, ID_WordWrap);
     Bind(wxEVT_MENU, &Frame::Font, this, ID_Font);
 
-    Bind(wxEVT_MENU, &Frame::Zoom, this, ID_Zoom);
+    Bind(wxEVT_MENU, &Frame::ZoomIn, this, ID_ZoomIn);
+    Bind(wxEVT_MENU, &Frame::ZoomOut, this, ID_ZoomOut);
+    Bind(wxEVT_MENU, &Frame::RestoreDefaultZoom, this, ID_RestoreDefaultZoom);
     Bind(wxEVT_MENU, &Frame::StatusBar, this, ID_StatusBar);
 
     int widths[] = {-1, 100, 100, 100, 100};
