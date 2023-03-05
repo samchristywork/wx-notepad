@@ -29,6 +29,8 @@ enum {
   ID_GoTo,
   ID_SelectAll,
   ID_TimeDate,
+  ID_WordWrap,
+  ID_Font,
 };
 
 class App : public wxApp {
