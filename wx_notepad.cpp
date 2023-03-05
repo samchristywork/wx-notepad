@@ -315,6 +315,7 @@ public:
   }
 
   void WordWrap(wxCommandEvent &event) {
+    this->m_textCtrl->ToggleWindowStyle(wxTE_DONTWRAP);
   }
 
   void Font(wxCommandEvent &event) {}
