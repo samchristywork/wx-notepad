@@ -58,7 +58,7 @@ void add_menu_item(wxMenu *menu, wxString text, int id) {
 
 class GoToWindow : public GoToFrame {
 public:
-  GoToWindow(wxWindow *parent) : GoToFrame(parent) {
+  GoToWindow(wxWindow *parent, int n) : GoToFrame(parent) {
     this->Show(true);
 
     unsigned long m_value;
@@ -66,6 +66,8 @@ public:
                                                 wxNUM_VAL_THOUSANDS_SEPARATOR);
 
     this->m_textCtrl2->SetValidator(validator);
+
+    this->m_textCtrl2->SetValue(std::to_string(n));
   }
 
   virtual void GoToClickCallback(wxCommandEvent &event) {
@@ -296,7 +298,19 @@ public:
 
   void Replace(wxCommandEvent &event) {}
 
-  void GoTo(wxCommandEvent &event) { new GoToWindow(this); }
+  void GoTo(wxCommandEvent &event) {
+    int position = this->m_textCtrl->GetInsertionPoint();
+
+    long x = 0;
+    long y = 0;
+    this->m_textCtrl->PositionToXY(position, &x, &y);
+
+    x++;
+    y++;
+
+    int n = y;
+    new GoToWindow(this, n);
+  }
 
   void SelectAll(wxCommandEvent &event) {
     this->m_textCtrl->SetSelection(0, -1);
@@ -373,19 +387,20 @@ public:
   void ViewHelp(wxCommandEvent &event) {
     wxMimeTypesManager manager;
     wxFileType *filetype = manager.GetFileTypeFromExtension("html");
-    wxString command = filetype->GetOpenCommand("https://github.com/samchristywork/wx-notepad/");
+    wxString command = filetype->GetOpenCommand(
+        "https://github.com/samchristywork/wx-notepad/");
     wxExecute(command);
   }
 
   void SendFeedback(wxCommandEvent &event) {
     wxMimeTypesManager manager;
     wxFileType *filetype = manager.GetFileTypeFromExtension("html");
-    wxString command = filetype->GetOpenCommand("https://github.com/samchristywork/wx-notepad/issues/");
+    wxString command = filetype->GetOpenCommand(
+        "https://github.com/samchristywork/wx-notepad/issues/");
     wxExecute(command);
   }
 
-  void AboutNotepad(wxCommandEvent &event) {
-  }
+  void AboutNotepad(wxCommandEvent &event) {}
 
   void UpdateFontSize() {
     wxFont font = this->m_textCtrl->GetFont();
