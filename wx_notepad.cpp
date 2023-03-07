@@ -77,9 +77,7 @@ public:
     printf("%d\n", number);
   }
 
-  virtual void GoToCancelCallback(wxCommandEvent &event) {
-    this->Destroy();
-  }
+  virtual void GoToCancelCallback(wxCommandEvent &event) { this->Destroy(); }
 };
 
 class Frame : public MainFrame {
@@ -491,9 +489,9 @@ public:
     y++;
 
     str += "Ln ";
-    str += std::to_string(x);
-    str += ", Col ";
     str += std::to_string(y);
+    str += ", Col ";
+    str += std::to_string(x);
 
     this->m_statusBar->SetStatusText(str, 1);
 
