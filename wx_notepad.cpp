@@ -67,6 +67,17 @@ public:
 
     this->m_textCtrl2->SetValidator(validator);
   }
+
+  virtual void GoToClickCallback(wxCommandEvent &event) {
+    wxString str = this->m_textCtrl2->GetValue();
+
+    int number = wxAtoi(str);
+    printf("%d\n", number);
+  }
+
+  virtual void GoToCancelCallback(wxCommandEvent &event) {
+    this->Destroy();
+  }
 };
 
 class Frame : public MainFrame {
