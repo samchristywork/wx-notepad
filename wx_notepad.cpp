@@ -10,6 +10,7 @@
 #include <wx/mimetype.h>
 #include <wx/stc/stc.h>
 #include <wx/textfile.h>
+#include <wx/valnum.h>
 
 #include "codegen/noname.h"
 
@@ -57,7 +58,15 @@ void add_menu_item(wxMenu *menu, wxString text, int id) {
 
 class GoToWindow : public GoToFrame {
 public:
-  GoToWindow(wxWindow *parent) : GoToFrame(parent) { this->Show(true); }
+  GoToWindow(wxWindow *parent) : GoToFrame(parent) {
+    this->Show(true);
+
+    unsigned long m_value;
+    wxIntegerValidator<unsigned long> validator(&m_value,
+                                                wxNUM_VAL_THOUSANDS_SEPARATOR);
+
+    this->m_textCtrl2->SetValidator(validator);
+  }
 };
 
 class Frame : public MainFrame {
