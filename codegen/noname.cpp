@@ -80,10 +80,18 @@ GoToFrame::GoToFrame( wxWindow* parent, wxWindowID id, const wxString& title, co
 	bSizer2->Fit( this );
 
 	this->Centre( wxBOTH );
+
+	// Connect Events
+	m_button1->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( GoToFrame::GoToClickCallback ), NULL, this );
+	m_button2->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( GoToFrame::GoToCancelCallback ), NULL, this );
 }
 
 GoToFrame::~GoToFrame()
 {
+	// Disconnect Events
+	m_button1->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( GoToFrame::GoToClickCallback ), NULL, this );
+	m_button2->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( GoToFrame::GoToCancelCallback ), NULL, this );
+
 }
 
 MyFrame3::MyFrame3( wxWindow* parent, wxWindowID id, const wxString& title, const wxPoint& pos, const wxSize& size, long style ) : wxFrame( parent, id, title, pos, size, style )
