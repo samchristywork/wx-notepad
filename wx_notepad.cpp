@@ -71,6 +71,17 @@ public:
 
     this->m_textCtrl2->SetValidator(validator);
 
+    int position = textCtrl->GetInsertionPoint();
+
+    long x = 0;
+    long y = 0;
+    textCtrl->PositionToXY(position, &x, &y);
+
+    x++;
+    y++;
+
+    int n = y;
+
     this->m_textCtrl2->SetValue(std::to_string(n));
   }
 
