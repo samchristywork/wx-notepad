@@ -58,8 +58,12 @@ void add_menu_item(wxMenu *menu, wxString text, int id) {
 
 class GoToWindow : public GoToFrame {
 public:
-  GoToWindow(wxWindow *parent, int n) : GoToFrame(parent) {
+  wxTextCtrl *textCtrl;
+
+  GoToWindow(wxWindow *parent, wxTextCtrl *textCtrl) : GoToFrame(parent) {
     this->Show(true);
+
+    this->textCtrl = textCtrl;
 
     unsigned long m_value;
     wxIntegerValidator<unsigned long> validator(&m_value,
@@ -299,19 +303,7 @@ public:
 
   void Replace(wxCommandEvent &event) {}
 
-  void GoTo(wxCommandEvent &event) {
-    int position = this->m_textCtrl->GetInsertionPoint();
-
-    long x = 0;
-    long y = 0;
-    this->m_textCtrl->PositionToXY(position, &x, &y);
-
-    x++;
-    y++;
-
-    int n = y;
-    new GoToWindow(this, n);
-  }
+  void GoTo(wxCommandEvent &event) { new GoToWindow(this, this->m_textCtrl); }
 
   void SelectAll(wxCommandEvent &event) {
     this->m_textCtrl->SetSelection(0, -1);
