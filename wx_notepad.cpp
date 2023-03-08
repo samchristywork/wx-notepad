@@ -56,6 +56,24 @@ void add_menu_item(wxMenu *menu, wxString text, int id) {
   menu->Append(menuItem);
 }
 
+class FindStrWindow : public FindFrame {
+public:
+  FindStrWindow(wxWindow *parent, wxTextCtrl *textCtrl) : FindFrame(parent) {
+    this->Show(true);
+  }
+
+  void FindNext() {
+  }
+
+  virtual void FindNextClickCallback(wxCommandEvent &event) {
+  }
+
+  virtual void CancelClickCallback(wxCommandEvent &event) { this->Destroy(); }
+
+  virtual void FindEnterCallback(wxCommandEvent &event) {
+  }
+};
+
 class GoToWindow : public GoToFrame {
 public:
   wxTextCtrl *textCtrl;
