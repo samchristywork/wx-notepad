@@ -338,7 +338,9 @@ public:
     this->m_textCtrl->Remove(from, to);
   }
 
-  void Find(wxCommandEvent &event) {}
+  void Find(wxCommandEvent &event) {
+    new FindStrWindow(this, this->m_textCtrl);
+  }
 
   void FindNext(wxCommandEvent &event) {}
 
