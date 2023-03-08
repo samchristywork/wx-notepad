@@ -58,8 +58,21 @@ void add_menu_item(wxMenu *menu, wxString text, int id) {
 
 class FindStrWindow : public FindFrame {
 public:
+  wxTextCtrl *textCtrl;
   FindStrWindow(wxWindow *parent, wxTextCtrl *textCtrl) : FindFrame(parent) {
     this->Show(true);
+    this->textCtrl = textCtrl;
+
+    long from;
+    long to;
+
+    this->textCtrl->GetSelection(&from, &to);
+
+    wxString value=this->textCtrl->GetValue();
+
+    this->m_textCtrl3->SetValue(value.SubString(from, to));
+
+    this->m_textCtrl3->SetSelection(0,-1);
   }
 
   void FindNext() {
