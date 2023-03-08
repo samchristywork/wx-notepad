@@ -76,6 +76,16 @@ public:
   }
 
   void FindNext() {
+    long from;
+    long to;
+
+    this->textCtrl->GetSelection(&from, &to);
+
+    wxString value=this->textCtrl->GetValue();
+
+    size_t pos=value.find(this->m_textCtrl3->GetValue(), from+1);
+
+    this->textCtrl->SetSelection(pos, pos+this->m_textCtrl3->GetValue().length());
   }
 
   virtual void FindNextClickCallback(wxCommandEvent &event) {
