@@ -83,6 +83,8 @@ public:
     int n = y;
 
     this->m_textCtrl2->SetValue(std::to_string(n));
+
+    this->m_textCtrl2->SetSelection(0, -1);
   }
 
   virtual void GoToClickCallback(wxCommandEvent &event) {
