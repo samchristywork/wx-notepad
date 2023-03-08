@@ -89,11 +89,13 @@ public:
   }
 
   virtual void FindNextClickCallback(wxCommandEvent &event) {
+    this->FindNext();
   }
 
   virtual void CancelClickCallback(wxCommandEvent &event) { this->Destroy(); }
 
   virtual void FindEnterCallback(wxCommandEvent &event) {
+    this->FindNext();
   }
 };
 
