@@ -56,7 +56,7 @@ GoToFrame::GoToFrame( wxWindow* parent, wxWindowID id, const wxString& title, co
 	m_staticText1->Wrap( -1 );
 	bSizer2->Add( m_staticText1, 0, wxALL, 5 );
 
-	m_textCtrl2 = new wxTextCtrl( this, wxID_ANY, wxT("1"), wxDefaultPosition, wxDefaultSize, 0 );
+	m_textCtrl2 = new wxTextCtrl( this, wxID_ANY, wxT("1"), wxDefaultPosition, wxDefaultSize, wxTE_PROCESS_ENTER );
 	bSizer2->Add( m_textCtrl2, 0, wxALL, 5 );
 
 	wxBoxSizer* bSizer3;
@@ -82,6 +82,7 @@ GoToFrame::GoToFrame( wxWindow* parent, wxWindowID id, const wxString& title, co
 	this->Centre( wxBOTH );
 
 	// Connect Events
+	m_textCtrl2->Connect( wxEVT_COMMAND_TEXT_ENTER, wxCommandEventHandler( GoToFrame::GoToLineEnterCallback ), NULL, this );
 	m_button1->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( GoToFrame::GoToClickCallback ), NULL, this );
 	m_button2->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( GoToFrame::GoToCancelCallback ), NULL, this );
 }
@@ -89,6 +90,7 @@ GoToFrame::GoToFrame( wxWindow* parent, wxWindowID id, const wxString& title, co
 GoToFrame::~GoToFrame()
 {
 	// Disconnect Events
+	m_textCtrl2->Disconnect( wxEVT_COMMAND_TEXT_ENTER, wxCommandEventHandler( GoToFrame::GoToLineEnterCallback ), NULL, this );
 	m_button1->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( GoToFrame::GoToClickCallback ), NULL, this );
 	m_button2->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( GoToFrame::GoToCancelCallback ), NULL, this );
 

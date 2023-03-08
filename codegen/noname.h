@@ -71,6 +71,7 @@ class GoToFrame : public wxFrame
 		wxButton* m_button2;
 
 		// Virtual event handlers, override them in your derived class
+		virtual void GoToLineEnterCallback( wxCommandEvent& event ) { event.Skip(); }
 		virtual void GoToClickCallback( wxCommandEvent& event ) { event.Skip(); }
 		virtual void GoToCancelCallback( wxCommandEvent& event ) { event.Skip(); }
 

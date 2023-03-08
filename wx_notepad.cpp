@@ -78,6 +78,9 @@ public:
   }
 
   virtual void GoToCancelCallback(wxCommandEvent &event) { this->Destroy(); }
+
+  virtual void GoToLineEnterCallback(wxCommandEvent &event) {
+  }
 };
 
 class Frame : public MainFrame {
