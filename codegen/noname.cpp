@@ -116,7 +116,7 @@ FindFrame::FindFrame( wxWindow* parent, wxWindowID id, const wxString& title, co
 	m_staticText2->Wrap( -1 );
 	bSizer8->Add( m_staticText2, 0, wxALL, 5 );
 
-	m_textCtrl3 = new wxTextCtrl( this, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0 );
+	m_textCtrl3 = new wxTextCtrl( this, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxTE_PROCESS_ENTER );
 	bSizer8->Add( m_textCtrl3, 0, wxALL, 5 );
 
 
