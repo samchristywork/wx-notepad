@@ -91,12 +91,24 @@ public:
     wxString str = this->m_textCtrl2->GetValue();
 
     int number = wxAtoi(str);
-    printf("%d\n", number);
+
+    long pos = this->textCtrl->XYToPosition(0, number - 1);
+
+    this->textCtrl->SetInsertionPoint(pos);
+    this->Destroy();
   }
 
   virtual void GoToCancelCallback(wxCommandEvent &event) { this->Destroy(); }
 
   virtual void GoToLineEnterCallback(wxCommandEvent &event) {
+    wxString str = this->m_textCtrl2->GetValue();
+
+    int number = wxAtoi(str);
+
+    long pos = this->textCtrl->XYToPosition(0, number - 1);
+
+    this->textCtrl->SetInsertionPoint(pos);
+    this->Destroy();
   }
 };
 
