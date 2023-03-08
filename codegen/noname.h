@@ -85,9 +85,9 @@ class GoToFrame : public wxFrame
 };
 
 ///////////////////////////////////////////////////////////////////////////////
-/// Class MyFrame3
+/// Class FindFrame
 ///////////////////////////////////////////////////////////////////////////////
-class MyFrame3 : public wxFrame
+class FindFrame : public wxFrame
 {
 	private:
 
@@ -100,11 +100,17 @@ class MyFrame3 : public wxFrame
 		wxButton* m_button6;
 		wxButton* m_button7;
 
+		// Virtual event handlers, override them in your derived class
+		virtual void FindEnterCallback( wxCommandEvent& event ) { event.Skip(); }
+		virtual void FindNextClickCallback( wxCommandEvent& event ) { event.Skip(); }
+		virtual void CancelClickCallback( wxCommandEvent& event ) { event.Skip(); }
+
+
 	public:
 
-		MyFrame3( wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = wxT("Find"), const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( -1,-1 ), long style = wxDEFAULT_FRAME_STYLE|wxTAB_TRAVERSAL );
+		FindFrame( wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = wxT("Find"), const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( -1,-1 ), long style = wxDEFAULT_FRAME_STYLE|wxTAB_TRAVERSAL );
 
-		~MyFrame3();
+		~FindFrame();
 
 };
 

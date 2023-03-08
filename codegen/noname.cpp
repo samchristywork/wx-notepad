@@ -96,7 +96,7 @@ GoToFrame::~GoToFrame()
 
 }
 
-MyFrame3::MyFrame3( wxWindow* parent, wxWindowID id, const wxString& title, const wxPoint& pos, const wxSize& size, long style ) : wxFrame( parent, id, title, pos, size, style )
+FindFrame::FindFrame( wxWindow* parent, wxWindowID id, const wxString& title, const wxPoint& pos, const wxSize& size, long style ) : wxFrame( parent, id, title, pos, size, style )
 {
 	this->SetSizeHints( wxDefaultSize, wxDefaultSize );
 
@@ -165,8 +165,18 @@ MyFrame3::MyFrame3( wxWindow* parent, wxWindowID id, const wxString& title, cons
 	bSizer4->Fit( this );
 
 	this->Centre( wxBOTH );
+
+	// Connect Events
+	m_textCtrl3->Connect( wxEVT_COMMAND_TEXT_ENTER, wxCommandEventHandler( FindFrame::FindEnterCallback ), NULL, this );
+	m_button6->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( FindFrame::FindNextClickCallback ), NULL, this );
+	m_button7->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( FindFrame::CancelClickCallback ), NULL, this );
 }
 
-MyFrame3::~MyFrame3()
+FindFrame::~FindFrame()
 {
+	// Disconnect Events
+	m_textCtrl3->Disconnect( wxEVT_COMMAND_TEXT_ENTER, wxCommandEventHandler( FindFrame::FindEnterCallback ), NULL, this );
+	m_button6->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( FindFrame::FindNextClickCallback ), NULL, this );
+	m_button7->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( FindFrame::CancelClickCallback ), NULL, this );
+
 }
