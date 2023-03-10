@@ -69,11 +69,11 @@ public:
 
     this->textCtrl->GetSelection(&from, &to);
 
-    wxString value=this->textCtrl->GetValue();
+    wxString value = this->textCtrl->GetValue();
 
     this->m_textCtrl3->SetValue(value.SubString(from, to));
 
-    this->m_textCtrl3->SetSelection(0,-1);
+    this->m_textCtrl3->SetSelection(0, -1);
   }
 
   void FindNext() {
@@ -82,11 +82,12 @@ public:
 
     this->textCtrl->GetSelection(&from, &to);
 
-    wxString value=this->textCtrl->GetValue();
+    wxString value = this->textCtrl->GetValue();
 
-    size_t pos=value.find(this->m_textCtrl3->GetValue(), from+1);
+    size_t pos = value.find(this->m_textCtrl3->GetValue(), from + 1);
 
-    this->textCtrl->SetSelection(pos, pos+this->m_textCtrl3->GetValue().length());
+    this->textCtrl->SetSelection(pos,
+                                 pos + this->m_textCtrl3->GetValue().length());
   }
 
   virtual void FindNextClickCallback(wxCommandEvent &event) {
@@ -95,9 +96,7 @@ public:
 
   virtual void CancelClickCallback(wxCommandEvent &event) { this->Destroy(); }
 
-  virtual void FindEnterCallback(wxCommandEvent &event) {
-    this->FindNext();
-  }
+  virtual void FindEnterCallback(wxCommandEvent &event) { this->FindNext(); }
 };
 
 class GoToWindow : public GoToFrame {
@@ -435,9 +434,9 @@ public:
 
     wxConfig *config = new wxConfig("wxNotepad");
 
-    bool wrap=config->ReadBool("linewrap", true);
+    bool wrap = config->ReadBool("linewrap", true);
 
-    wrap=!wrap;
+    wrap = !wrap;
 
     config->Write("linewrap", wrap);
 
