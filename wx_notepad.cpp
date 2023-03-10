@@ -268,6 +268,10 @@ public:
 
     bool wrap = config->ReadBool("linewrap", true);
 
+    config->Write("linewrap", wrap);
+
+    delete config;
+
     if (wrap) {
       if (this->m_textCtrl->GetWindowStyleFlag() & wxTE_DONTWRAP) {
         this->m_textCtrl->ToggleWindowStyle(wxTE_DONTWRAP);
@@ -436,6 +440,8 @@ public:
     wrap=!wrap;
 
     config->Write("linewrap", wrap);
+
+    delete config;
 
     if (wrap) {
       if (this->m_textCtrl->GetWindowStyleFlag() & wxTE_DONTWRAP) {
