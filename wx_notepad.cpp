@@ -428,7 +428,24 @@ public:
   }
 
   void WordWrap(wxCommandEvent &event) {
-    this->m_textCtrl->ToggleWindowStyle(wxTE_DONTWRAP);
+
+    wxConfig *config = new wxConfig("wxNotepad");
+
+    bool wrap=config->ReadBool("linewrap", true);
+
+    wrap=!wrap;
+
+    config->Write("linewrap", wrap);
+
+    if (wrap) {
+      if (this->m_textCtrl->GetWindowStyleFlag() & wxTE_DONTWRAP) {
+        this->m_textCtrl->ToggleWindowStyle(wxTE_DONTWRAP);
+      }
+    } else {
+      if (!(this->m_textCtrl->GetWindowStyleFlag() & wxTE_DONTWRAP)) {
+        this->m_textCtrl->ToggleWindowStyle(wxTE_DONTWRAP);
+      }
+    }
   }
 
   void Font(wxCommandEvent &event) {}
