@@ -5,6 +5,7 @@
 #endif
 
 #include <string>
+#include <wx/config.h>
 #include <wx/filedlg.h>
 #include <wx/menu.h>
 #include <wx/mimetype.h>
@@ -262,6 +263,14 @@ public:
     this->m_statusBar->SetFieldsCount(5, widths);
 
     this->RedrawStatusBar();
+
+    wxConfig *config = new wxConfig("wxNotepad");
+
+    bool wrap = config->ReadBool("linewrap", true);
+
+    if (wrap) {
+      this->m_textCtrl->ToggleWindowStyle(wxTE_DONTWRAP);
+    }
   }
 
   void UpdateTitle() {
