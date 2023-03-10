@@ -60,35 +60,9 @@ void add_menu_item(wxMenu *menu, wxString text, int id) {
 class FindStrWindow : public FindFrame {
 public:
   wxTextCtrl *textCtrl;
-  FindStrWindow(wxWindow *parent, wxTextCtrl *textCtrl) : FindFrame(parent) {
-    this->Show(true);
-    this->textCtrl = textCtrl;
 
-    long from;
-    long to;
-
-    this->textCtrl->GetSelection(&from, &to);
-
-    wxString value = this->textCtrl->GetValue();
-
-    this->m_textCtrl3->SetValue(value.SubString(from, to));
-
-    this->m_textCtrl3->SetSelection(0, -1);
-  }
-
-  void FindNext() {
-    long from;
-    long to;
-
-    this->textCtrl->GetSelection(&from, &to);
-
-    wxString value = this->textCtrl->GetValue();
-
-    size_t pos = value.find(this->m_textCtrl3->GetValue(), from + 1);
-
-    this->textCtrl->SetSelection(pos,
-                                 pos + this->m_textCtrl3->GetValue().length());
-  }
+  FindStrWindow(wxWindow *parent, wxTextCtrl *textCtrl);
+  void FindNext();
 
   virtual void FindNextClickCallback(wxCommandEvent &event) {
     this->FindNext();
@@ -99,36 +73,42 @@ public:
   virtual void FindEnterCallback(wxCommandEvent &event) { this->FindNext(); }
 };
 
+FindStrWindow::FindStrWindow(wxWindow *parent, wxTextCtrl *textCtrl)
+    : FindFrame(parent) {
+  this->Show(true);
+  this->textCtrl = textCtrl;
+
+  long from;
+  long to;
+
+  this->textCtrl->GetSelection(&from, &to);
+
+  wxString value = this->textCtrl->GetValue();
+
+  this->m_textCtrl3->SetValue(value.SubString(from, to));
+
+  this->m_textCtrl3->SetSelection(0, -1);
+}
+
+void FindStrWindow::FindNext() {
+  long from;
+  long to;
+
+  this->textCtrl->GetSelection(&from, &to);
+
+  wxString value = this->textCtrl->GetValue();
+
+  size_t pos = value.find(this->m_textCtrl3->GetValue(), from + 1);
+
+  this->textCtrl->SetSelection(pos,
+                               pos + this->m_textCtrl3->GetValue().length());
+}
+
 class GoToWindow : public GoToFrame {
 public:
   wxTextCtrl *textCtrl;
 
-  GoToWindow(wxWindow *parent, wxTextCtrl *textCtrl) : GoToFrame(parent) {
-    this->Show(true);
-
-    this->textCtrl = textCtrl;
-
-    unsigned long m_value;
-    wxIntegerValidator<unsigned long> validator(&m_value,
-                                                wxNUM_VAL_THOUSANDS_SEPARATOR);
-
-    this->m_textCtrl2->SetValidator(validator);
-
-    int position = textCtrl->GetInsertionPoint();
-
-    long x = 0;
-    long y = 0;
-    textCtrl->PositionToXY(position, &x, &y);
-
-    x++;
-    y++;
-
-    int n = y;
-
-    this->m_textCtrl2->SetValue(std::to_string(n));
-
-    this->m_textCtrl2->SetSelection(0, -1);
-  }
+  GoToWindow(wxWindow *parent, wxTextCtrl *textCtrl);
 
   virtual void GoToClickCallback(wxCommandEvent &event) {
     wxString str = this->m_textCtrl2->GetValue();
@@ -154,6 +134,34 @@ public:
     this->Destroy();
   }
 };
+
+GoToWindow::GoToWindow(wxWindow *parent, wxTextCtrl *textCtrl)
+    : GoToFrame(parent) {
+  this->Show(true);
+
+  this->textCtrl = textCtrl;
+
+  unsigned long m_value;
+  wxIntegerValidator<unsigned long> validator(&m_value,
+                                              wxNUM_VAL_THOUSANDS_SEPARATOR);
+
+  this->m_textCtrl2->SetValidator(validator);
+
+  int position = textCtrl->GetInsertionPoint();
+
+  long x = 0;
+  long y = 0;
+  textCtrl->PositionToXY(position, &x, &y);
+
+  x++;
+  y++;
+
+  int n = y;
+
+  this->m_textCtrl2->SetValue(std::to_string(n));
+
+  this->m_textCtrl2->SetSelection(0, -1);
+}
 
 class Frame : public MainFrame {
 public:
