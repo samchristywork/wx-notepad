@@ -269,7 +269,13 @@ public:
     bool wrap = config->ReadBool("linewrap", true);
 
     if (wrap) {
-      this->m_textCtrl->ToggleWindowStyle(wxTE_DONTWRAP);
+      if (this->m_textCtrl->GetWindowStyleFlag() & wxTE_DONTWRAP) {
+        this->m_textCtrl->ToggleWindowStyle(wxTE_DONTWRAP);
+      }
+    } else {
+      if (!(this->m_textCtrl->GetWindowStyleFlag() & wxTE_DONTWRAP)) {
+        this->m_textCtrl->ToggleWindowStyle(wxTE_DONTWRAP);
+      }
     }
   }
 
