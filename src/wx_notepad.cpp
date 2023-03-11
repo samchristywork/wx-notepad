@@ -15,6 +15,8 @@
 
 #include "../codegen/noname.h"
 
+#include "goto.hpp"
+
 enum {
   ID_Exit,
   ID_New,
@@ -60,16 +62,6 @@ public:
   virtual void FindNextClickCallback(wxCommandEvent &event);
   virtual void CancelClickCallback(wxCommandEvent &event);
   virtual void FindEnterCallback(wxCommandEvent &event);
-};
-
-class GoToWindow : public GoToFrame {
-public:
-  wxTextCtrl *textCtrl;
-
-  GoToWindow(wxWindow *parent, wxTextCtrl *textCtrl);
-  virtual void GoToClickCallback(wxCommandEvent &event);
-  virtual void GoToCancelCallback(wxCommandEvent &event);
-  virtual void GoToLineEnterCallback(wxCommandEvent &event);
 };
 
 class Frame : public MainFrame {
