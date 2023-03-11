@@ -13,7 +13,7 @@
 #include <wx/textfile.h>
 #include <wx/valnum.h>
 
-#include "codegen/noname.h"
+#include "../codegen/noname.h"
 
 enum {
   ID_Exit,
@@ -122,8 +122,6 @@ void add_menu_item(wxMenu *menu, wxString text, int id) {
 
   menu->Append(menuItem);
 }
-
-// TODO Make things private
 
 void FindStrWindow::CancelClickCallback(wxCommandEvent &event) {
   this->Destroy();
