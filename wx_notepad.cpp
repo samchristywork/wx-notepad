@@ -50,13 +50,6 @@ public:
   virtual bool OnInit();
 };
 
-void add_menu_item(wxMenu *menu, wxString text, int id) {
-  wxMenuItem *menuItem =
-      new wxMenuItem(menu, id, text, wxEmptyString, wxITEM_NORMAL);
-
-  menu->Append(menuItem);
-}
-
 class FindStrWindow : public FindFrame {
 public:
   wxTextCtrl *textCtrl;
@@ -69,15 +62,34 @@ public:
   virtual void FindEnterCallback(wxCommandEvent &event);
 };
 
-void FindStrWindow::CancelClickCallback(wxCommandEvent &event){
+class GoToWindow : public GoToFrame {
+public:
+  wxTextCtrl *textCtrl;
+
+  GoToWindow(wxWindow *parent, wxTextCtrl *textCtrl);
+  virtual void GoToClickCallback(wxCommandEvent &event);
+  virtual void GoToCancelCallback(wxCommandEvent &event);
+  virtual void GoToLineEnterCallback(wxCommandEvent &event);
+};
+
+void add_menu_item(wxMenu *menu, wxString text, int id) {
+  wxMenuItem *menuItem =
+      new wxMenuItem(menu, id, text, wxEmptyString, wxITEM_NORMAL);
+
+  menu->Append(menuItem);
+}
+
+// TODO Make things private
+
+void FindStrWindow::CancelClickCallback(wxCommandEvent &event) {
   this->Destroy();
 }
 
-void FindStrWindow::FindEnterCallback(wxCommandEvent &event){
+void FindStrWindow::FindEnterCallback(wxCommandEvent &event) {
   this->FindNext();
 }
 
-void FindStrWindow::FindNextClickCallback(wxCommandEvent &event){
+void FindStrWindow::FindNextClickCallback(wxCommandEvent &event) {
   this->FindNext();
 }
 
@@ -112,36 +124,29 @@ void FindStrWindow::FindNext() {
                                pos + this->m_textCtrl3->GetValue().length());
 }
 
-class GoToWindow : public GoToFrame {
-public:
-  wxTextCtrl *textCtrl;
+void GoToWindow::GoToClickCallback(wxCommandEvent &event) {
+  wxString str = this->m_textCtrl2->GetValue();
 
-  GoToWindow(wxWindow *parent, wxTextCtrl *textCtrl);
+  int number = wxAtoi(str);
 
-  virtual void GoToClickCallback(wxCommandEvent &event) {
-    wxString str = this->m_textCtrl2->GetValue();
+  long pos = this->textCtrl->XYToPosition(0, number - 1);
 
-    int number = wxAtoi(str);
+  this->textCtrl->SetInsertionPoint(pos);
+  this->Destroy();
+}
 
-    long pos = this->textCtrl->XYToPosition(0, number - 1);
+void GoToWindow::GoToCancelCallback(wxCommandEvent &event) { this->Destroy(); }
 
-    this->textCtrl->SetInsertionPoint(pos);
-    this->Destroy();
-  }
+void GoToWindow::GoToLineEnterCallback(wxCommandEvent &event) {
+  wxString str = this->m_textCtrl2->GetValue();
 
-  virtual void GoToCancelCallback(wxCommandEvent &event) { this->Destroy(); }
+  int number = wxAtoi(str);
 
-  virtual void GoToLineEnterCallback(wxCommandEvent &event) {
-    wxString str = this->m_textCtrl2->GetValue();
+  long pos = this->textCtrl->XYToPosition(0, number - 1);
 
-    int number = wxAtoi(str);
-
-    long pos = this->textCtrl->XYToPosition(0, number - 1);
-
-    this->textCtrl->SetInsertionPoint(pos);
-    this->Destroy();
-  }
-};
+  this->textCtrl->SetInsertionPoint(pos);
+  this->Destroy();
+}
 
 GoToWindow::GoToWindow(wxWindow *parent, wxTextCtrl *textCtrl)
     : GoToFrame(parent) {
