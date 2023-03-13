@@ -8,8 +8,10 @@ public:
   wxTextCtrl *textCtrl;
 
   GoToWindow(wxWindow *parent, wxTextCtrl *textCtrl);
-  virtual void GoToClickCallback(wxCommandEvent &event);
+
+private:
   virtual void GoToCancelCallback(wxCommandEvent &event);
+  virtual void GoToClickCallback(wxCommandEvent &event);
   virtual void GoToLineEnterCallback(wxCommandEvent &event);
 };
 

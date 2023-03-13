@@ -8,11 +8,12 @@ public:
   wxTextCtrl *textCtrl;
 
   FindStrWindow(wxWindow *parent, wxTextCtrl *textCtrl);
-  void FindNext();
 
-  virtual void FindNextClickCallback(wxCommandEvent &event);
+private:
   virtual void CancelClickCallback(wxCommandEvent &event);
   virtual void FindEnterCallback(wxCommandEvent &event);
+  virtual void FindNextClickCallback(wxCommandEvent &event);
+  void FindNext();
 };
 
 #endif
