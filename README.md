@@ -12,7 +12,20 @@ version of Notepad.
 
 ## Usage
 
-## Dependencies:
+Simply invoke the program with zero or more file names as command-line
+arguments.
+
+## Dependencies
+
+You will need a C++ compiler. The default compiler used by this project is
+Clang. If you aren't using Clang, then you will need to replace `clang++` with
+your compiler in the `Makefile`.
+
+You will need the wxWidgets development library. On ubuntu, this can be acquired
+by installing the `libwxgtk3.0-gtk3-dev` library.
+
+You will also need `make`.
+
 
 ## License
 
