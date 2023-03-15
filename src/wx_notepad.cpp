@@ -433,14 +433,16 @@ void Frame::LoadFileWithLineEndings(wxString filename) {
 
 void Frame::LoadFile(wxString filename) {
   wxTextFile tfile;
-  tfile.Open(filename);
-  this->fileType = tfile.GuessType();
-  tfile.Close();
+  if (tfile.Open(filename)) {
+    this->fileType = tfile.GuessType();
+    tfile.Close();
 
-  this->filename = filename;
-  this->m_textCtrl->LoadFile(filename);
-  this->m_textCtrl->SetInsertionPoint(0);
-  this->UpdateTitle();
+    this->filename = filename;
+    this->m_textCtrl->LoadFile(filename);
+    this->m_textCtrl->SetInsertionPoint(0);
+    this->UpdateTitle();
+
+  }
 }
 
 void Frame::UpdateUICallback(wxUpdateUIEvent &event) {
