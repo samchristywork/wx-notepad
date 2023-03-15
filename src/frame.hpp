@@ -5,6 +5,36 @@
 
 #include "../codegen/noname.h"
 
+enum {
+  ID_Exit,
+  ID_New,
+  ID_New_Window,
+  ID_Open,
+  ID_Save,
+  ID_Save_As,
+  ID_Undo,
+  ID_Cut,
+  ID_Copy,
+  ID_Paste,
+  ID_Delete,
+  ID_Find,
+  ID_FindNext,
+  ID_FindPrevious,
+  ID_Replace,
+  ID_GoTo,
+  ID_SelectAll,
+  ID_TimeDate,
+  ID_WordWrap,
+  ID_Font,
+  ID_StatusBar,
+  ID_ZoomIn,
+  ID_ZoomOut,
+  ID_RestoreDefaultZoom,
+  ID_ViewHelp,
+  ID_SendFeedback,
+  ID_AboutNotepad,
+};
+
 class Frame : public MainFrame {
 public:
   wxString filename = "";
