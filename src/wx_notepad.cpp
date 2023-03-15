@@ -441,7 +441,12 @@ void Frame::LoadFile(wxString filename) {
     this->m_textCtrl->LoadFile(filename);
     this->m_textCtrl->SetInsertionPoint(0);
     this->UpdateTitle();
+  } else {
+    this->fileType = wxTextFileType_Unix;
 
+    this->filename = filename;
+    this->m_textCtrl->SetInsertionPoint(0);
+    this->UpdateTitle();
   }
 }
 
