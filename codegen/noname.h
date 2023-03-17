@@ -114,3 +114,20 @@ class FindFrame : public wxFrame
 
 };
 
+///////////////////////////////////////////////////////////////////////////////
+/// Class FontFrame
+///////////////////////////////////////////////////////////////////////////////
+class FontFrame : public wxFrame
+{
+	private:
+
+	protected:
+
+	public:
+
+		FontFrame( wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = wxT("Font"), const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( -1,-1 ), long style = wxDEFAULT_FRAME_STYLE|wxTAB_TRAVERSAL );
+
+		~FontFrame();
+
+};
+
