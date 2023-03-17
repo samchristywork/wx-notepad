@@ -185,6 +185,126 @@ FontFrame::FontFrame( wxWindow* parent, wxWindowID id, const wxString& title, co
 {
 	this->SetSizeHints( wxDefaultSize, wxDefaultSize );
 
+	wxBoxSizer* bSizer10;
+	bSizer10 = new wxBoxSizer( wxVERTICAL );
+
+	wxBoxSizer* bSizer11;
+	bSizer11 = new wxBoxSizer( wxHORIZONTAL );
+
+	wxBoxSizer* bSizer13;
+	bSizer13 = new wxBoxSizer( wxVERTICAL );
+
+	m_staticText4 = new wxStaticText( this, wxID_ANY, wxT("MyLabel"), wxDefaultPosition, wxDefaultSize, 0 );
+	m_staticText4->Wrap( -1 );
+	bSizer13->Add( m_staticText4, 0, wxALL, 5 );
+
+	m_textCtrl4 = new wxTextCtrl( this, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0 );
+	bSizer13->Add( m_textCtrl4, 0, wxALL, 5 );
+
+	m_listBox1 = new wxListBox( this, wxID_ANY, wxDefaultPosition, wxDefaultSize, 0, NULL, 0 );
+	m_listBox1->Append( wxT("A") );
+	m_listBox1->Append( wxT("B") );
+	m_listBox1->Append( wxT("C") );
+	m_listBox1->Append( wxT("D") );
+	m_listBox1->Append( wxT("E") );
+	bSizer13->Add( m_listBox1, 0, wxALL, 5 );
+
+
+	bSizer11->Add( bSizer13, 1, wxEXPAND, 5 );
+
+	wxBoxSizer* bSizer131;
+	bSizer131 = new wxBoxSizer( wxVERTICAL );
+
+	m_staticText41 = new wxStaticText( this, wxID_ANY, wxT("MyLabel"), wxDefaultPosition, wxDefaultSize, 0 );
+	m_staticText41->Wrap( -1 );
+	bSizer131->Add( m_staticText41, 0, wxALL, 5 );
+
+	m_textCtrl41 = new wxTextCtrl( this, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0 );
+	bSizer131->Add( m_textCtrl41, 0, wxALL, 5 );
+
+	m_listBox11 = new wxListBox( this, wxID_ANY, wxDefaultPosition, wxDefaultSize, 0, NULL, 0 );
+	m_listBox11->Append( wxT("A") );
+	m_listBox11->Append( wxT("B") );
+	m_listBox11->Append( wxT("C") );
+	m_listBox11->Append( wxT("D") );
+	m_listBox11->Append( wxT("E") );
+	bSizer131->Add( m_listBox11, 0, wxALL, 5 );
+
+
+	bSizer11->Add( bSizer131, 1, wxEXPAND, 5 );
+
+	wxBoxSizer* bSizer132;
+	bSizer132 = new wxBoxSizer( wxVERTICAL );
+
+	m_staticText42 = new wxStaticText( this, wxID_ANY, wxT("MyLabel"), wxDefaultPosition, wxDefaultSize, 0 );
+	m_staticText42->Wrap( -1 );
+	bSizer132->Add( m_staticText42, 0, wxALL, 5 );
+
+	m_textCtrl42 = new wxTextCtrl( this, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0 );
+	bSizer132->Add( m_textCtrl42, 0, wxALL, 5 );
+
+	m_listBox12 = new wxListBox( this, wxID_ANY, wxDefaultPosition, wxDefaultSize, 0, NULL, 0 );
+	m_listBox12->Append( wxT("A") );
+	m_listBox12->Append( wxT("B") );
+	m_listBox12->Append( wxT("C") );
+	m_listBox12->Append( wxT("D") );
+	m_listBox12->Append( wxT("E") );
+	bSizer132->Add( m_listBox12, 0, wxALL, 5 );
+
+
+	bSizer11->Add( bSizer132, 1, wxEXPAND, 5 );
+
+
+	bSizer10->Add( bSizer11, 1, wxEXPAND, 5 );
+
+	wxBoxSizer* bSizer19;
+	bSizer19 = new wxBoxSizer( wxHORIZONTAL );
+
+	m_panel3 = new wxPanel( this, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL );
+	bSizer19->Add( m_panel3, 1, wxEXPAND | wxALL, 5 );
+
+	wxBoxSizer* bSizer21;
+	bSizer21 = new wxBoxSizer( wxVERTICAL );
+
+	m_staticText10 = new wxStaticText( this, wxID_ANY, wxT("wxStaticBox"), wxDefaultPosition, wxDefaultSize, 0 );
+	m_staticText10->Wrap( -1 );
+	bSizer21->Add( m_staticText10, 0, wxALL, 5 );
+
+	m_staticText11 = new wxStaticText( this, wxID_ANY, wxT("MyLabel"), wxDefaultPosition, wxDefaultSize, 0 );
+	m_staticText11->Wrap( -1 );
+	bSizer21->Add( m_staticText11, 0, wxALL, 5 );
+
+	m_comboBox1 = new wxComboBox( this, wxID_ANY, wxT("Combo!"), wxDefaultPosition, wxDefaultSize, 0, NULL, 0 );
+	bSizer21->Add( m_comboBox1, 0, wxALL, 5 );
+
+
+	bSizer19->Add( bSizer21, 1, wxEXPAND, 5 );
+
+
+	bSizer10->Add( bSizer19, 1, wxEXPAND, 5 );
+
+	m_hyperlink1 = new wxHyperlinkCtrl( this, wxID_ANY, wxT("test"), wxT("http://duckduckgo.com"), wxDefaultPosition, wxDefaultSize, wxHL_DEFAULT_STYLE );
+	bSizer10->Add( m_hyperlink1, 0, wxALL, 5 );
+
+	wxBoxSizer* bSizer22;
+	bSizer22 = new wxBoxSizer( wxHORIZONTAL );
+
+	m_panel4 = new wxPanel( this, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL );
+	bSizer22->Add( m_panel4, 1, wxEXPAND | wxALL, 5 );
+
+	m_button5 = new wxButton( this, wxID_ANY, wxT("MyButton"), wxDefaultPosition, wxDefaultSize, 0 );
+	bSizer22->Add( m_button5, 0, wxALL, 5 );
+
+	m_button6 = new wxButton( this, wxID_ANY, wxT("MyButton"), wxDefaultPosition, wxDefaultSize, 0 );
+	bSizer22->Add( m_button6, 0, wxALL, 5 );
+
+
+	bSizer10->Add( bSizer22, 1, wxEXPAND, 5 );
+
+
+	this->SetSizer( bSizer10 );
+	this->Layout();
+	bSizer10->Fit( this );
 
 	this->Centre( wxBOTH );
 }
