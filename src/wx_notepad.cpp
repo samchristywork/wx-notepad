@@ -16,6 +16,7 @@
 #include "../codegen/noname.h"
 
 #include "find.hpp"
+#include "font.hpp"
 #include "frame.hpp"
 #include "goto.hpp"
 
@@ -323,7 +324,9 @@ void Frame::WordWrap(wxCommandEvent &event) {
   }
 }
 
-void Frame::Font(wxCommandEvent &event) {}
+void Frame::Font(wxCommandEvent &event) {
+  new FontWindow(this);
+}
 
 void Frame::ZoomIn(wxCommandEvent &event) {
   this->zoomLevel += 10;
