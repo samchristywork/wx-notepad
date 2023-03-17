@@ -25,6 +25,9 @@
 #include <wx/image.h>
 #include <wx/icon.h>
 #include <wx/radiobox.h>
+#include <wx/listbox.h>
+#include <wx/combobox.h>
+#include <wx/hyperlink.h>
 
 ///////////////////////////////////////////////////////////////////////////
 
@@ -122,6 +125,23 @@ class FontFrame : public wxFrame
 	private:
 
 	protected:
+		wxStaticText* m_staticText4;
+		wxTextCtrl* m_textCtrl4;
+		wxListBox* m_listBox1;
+		wxStaticText* m_staticText41;
+		wxTextCtrl* m_textCtrl41;
+		wxListBox* m_listBox11;
+		wxStaticText* m_staticText42;
+		wxTextCtrl* m_textCtrl42;
+		wxListBox* m_listBox12;
+		wxPanel* m_panel3;
+		wxStaticText* m_staticText10;
+		wxStaticText* m_staticText11;
+		wxComboBox* m_comboBox1;
+		wxHyperlinkCtrl* m_hyperlink1;
+		wxPanel* m_panel4;
+		wxButton* m_button5;
+		wxButton* m_button6;
 
 	public:
 
