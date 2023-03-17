@@ -17,9 +17,13 @@ build/goto.o: src/goto.cpp src/goto.hpp
 	mkdir -p build/
 	${CC} ${CFLAGS} -c src/goto.cpp -o $@ ${LIBS}
 
-build/wx_notepad: src/wx_notepad.cpp build/noname.o build/goto.o build/find.o
+build/font.o: src/font.cpp src/font.hpp
 	mkdir -p build/
-	${CC} ${CFLAGS} src/wx_notepad.cpp build/goto.o build/find.o build/noname.o -o $@ ${LIBS}
+	${CC} ${CFLAGS} -c src/font.cpp -o $@ ${LIBS}
+
+build/wx_notepad: src/wx_notepad.cpp build/noname.o build/goto.o build/find.o build/font.o
+	mkdir -p build/
+	${CC} ${CFLAGS} src/wx_notepad.cpp build/goto.o build/find.o build/font.o build/noname.o -o $@ ${LIBS}
 
 clean:
 	rm -rf build/
