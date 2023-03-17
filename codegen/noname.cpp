@@ -180,3 +180,15 @@ FindFrame::~FindFrame()
 	m_button7->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( FindFrame::CancelClickCallback ), NULL, this );
 
 }
+
+FontFrame::FontFrame( wxWindow* parent, wxWindowID id, const wxString& title, const wxPoint& pos, const wxSize& size, long style ) : wxFrame( parent, id, title, pos, size, style )
+{
+	this->SetSizeHints( wxDefaultSize, wxDefaultSize );
+
+
+	this->Centre( wxBOTH );
+}
+
+FontFrame::~FontFrame()
+{
+}
